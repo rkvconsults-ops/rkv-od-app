@@ -41,8 +41,10 @@
   // stay synchronous when rendering the client-detail documents panel.
   fetch("documents.json").then(r => r.json()).then(d => { window.DOCS = d;
     return fetch("templates.json").then(r => r.json()); })
-    .then(t => { window.TPL = t; App.boot(); })
-    .catch(() => { window.DOCS = window.DOCS || { byStep: {} }; window.TPL = { templates: {} }; App.boot(); });
+    .then(t => { window.TPL = t;
+      return fetch("playbooks.json").then(r => r.json()); })
+    .then(p => { window.PB = p; App.boot(); })
+    .catch(() => { window.DOCS = window.DOCS || { byStep: {} }; window.TPL = window.TPL || { templates: {} }; window.PB = { issues: {} }; App.boot(); });
   // Offline shell -- lets the app open with no network (field use). Sync
   // stays queued until connectivity returns; nothing is lost either way.
   if ("serviceWorker" in navigator) {
