@@ -2,239 +2,239 @@
  "updated": "2026-08-15",
  "note": "Step -> document registry. 'exists' items name real artifacts and say where they live in the workspace ('location' is a human pointer, not a link -- the hosted app cannot reach local files). The 'url' field is empty until a document is uploaded somewhere linkable (Drive etc); when filled, the app renders a real open link. 'gap' items are named gaps, visible on purpose so the app never pretends a template exists before it does.",
  "byStep": {
-  "0": [
-   {
-    "name": "Entry criteria -- the five tests",
-    "status": "exists",
-    "location": "methodology-v1.md §1.2 · aakalan.md",
-    "url": ""
-   },
-   {
-    "name": "ClickUp Pre-Planning List (comms model · members · issue · ask · terms)",
-    "status": "exists",
-    "location": "ClickUp: NGO Consultation / OD Process / Pre Planning List",
-    "url": ""
-   }
-  ],
-  "1": [
-   {
-    "name": "Touch-1 email rules (under 90 words, one verifiable fact, no attachment)",
-    "status": "exists",
-    "location": "00-identity/voice.md",
-    "url": ""
-   }
-  ],
-  "2": [
-   {
-    "name": "Follow-up cadence (T2 day 5 · T3 day 12 · T4 day 20)",
-    "status": "exists",
-    "location": "02-pipeline/followup-cadence.md",
-    "url": ""
-   },
-   {
-    "name": "The Touch-3 'pure value' artifact",
-    "status": "draft",
-    "note": "DRAFT WRITTEN, lives in this app -- review before first client use",
-    "tpl": "touch3-value"
-   }
-  ],
-  "3": [
-   {
-    "name": "Holding reply + scheduling note",
-    "status": "draft",
-    "note": "DRAFT WRITTEN, lives in this app -- review before first client use",
-    "tpl": "holding-reply"
-   }
-  ],
-  "4": [
-   {
-    "name": "OD Process Note -- English",
-    "status": "exists",
-    "location": "06-delivery/od/process-notes/OD_Process_Note_EN.docx · fill the five xxx placeholders before sending",
-    "url": ""
-   },
-   {
-    "name": "OD Process Note -- Hindi/English",
-    "status": "exists",
-    "location": "06-delivery/od/process-notes/OD_Process_Note_HI-EN.docx",
-    "url": ""
-   },
-   {
-    "name": "Seven discovery questions",
-    "status": "exists",
-    "location": "methodology-v1.md §1.3",
-    "url": ""
-   },
-   {
-    "name": "20-minute call structure + note-capture format",
-    "status": "draft",
-    "note": "DRAFT WRITTEN, lives in this app -- review before first client use",
-    "tpl": "call-structure"
-   }
-  ],
-  "5": [
-   {
-    "name": "Proposal template",
-    "status": "draft",
-    "note": "DRAFT WRITTEN, lives in this app -- review before first client use",
-    "tpl": "proposal"
-   }
-  ],
-  "6": [
-   {
-    "name": "Terms of Reference template",
-    "status": "draft",
-    "note": "DRAFT WRITTEN, lives in this app -- review before first client use",
-    "tpl": "tor"
-   },
-   {
-    "name": "Payment terms: 50% advance / 50% on completion",
-    "status": "exists",
-    "location": "ClickUp Pre-Planning List · consider tying tranche 2 to handover, not the report",
-    "url": ""
-   }
-  ],
-  "7": [
-   {
-    "name": "Engagement brief template",
-    "status": "draft",
-    "note": "DRAFT WRITTEN, lives in this app -- review before first client use",
-    "tpl": "engagement-brief"
-   }
-  ],
-  "8": [
-   {
-    "name": "NGO Readiness Diagnostic (front-door self-check)",
-    "status": "exists",
-    "location": "02-pipeline/ngo-readiness-diagnostic.md · not a baseline instrument",
-    "url": ""
-   },
-   {
-    "name": "Ten Ingentis-audited diagnostic questions",
-    "status": "exists",
-    "location": "Step 8 rules box in this app's Reference view",
-    "url": ""
-   },
-   {
-    "name": "Interview guide",
-    "status": "draft",
-    "tpl": "interview-guide",
-    "note": "DRAFT WRITTEN, lives in this app -- review before first client use"
-   },
-   {
-    "name": "Document-request checklist",
-    "status": "draft",
-    "tpl": "doc-checklist",
-    "note": "DRAFT WRITTEN, lives in this app -- review before first client use"
-   },
-   {
-    "name": "Capacity assessment instrument + scoring",
-    "status": "draft",
-    "note": "DRAFT WRITTEN, lives in this app -- review before first client use",
-    "tpl": "capacity-assessment"
-   },
-   {
-    "name": "Observation protocol / interviewee confidentiality note",
-    "status": "draft",
-    "tpl": "confidentiality-note",
-    "note": "DRAFT WRITTEN, lives in this app -- review before first client use"
-   }
-  ],
-  "9": [
-   {
-    "name": "Diagnostic report template",
-    "status": "draft",
-    "note": "DRAFT WRITTEN, lives in this app -- review before first client use",
-    "tpl": "diagnostic-report"
-   },
-   {
-    "name": "Feedback session facilitation plan (90 min)",
-    "status": "draft",
-    "tpl": "feedback-plan",
-    "note": "DRAFT WRITTEN, lives in this app -- review before first client use"
-   }
-  ],
-  "10": [
-   {
-    "name": "OD Methodology v1.0 (Phase 4 carries the CLARITY gate)",
-    "status": "exists",
-    "location": "06-delivery/od/methodology-v1.md",
-    "url": ""
-   },
-   {
-    "name": "SMART Objective and Checklist (CDC)",
-    "status": "exists",
-    "location": "06-delivery/od/SMART Objective and Checklist.pdf",
-    "url": ""
-   },
-   {
-    "name": "Action plan + roadmap template",
-    "status": "draft",
-    "note": "DRAFT WRITTEN, lives in this app -- review before first client use",
-    "tpl": "action-plan"
-   }
-  ],
-  "11": [
-   {
-    "name": "VSS case note -- proof of Phase 5 delivered",
-    "status": "exists",
-    "location": "00-identity/practice/case-notes/Case-Note-VSS-Balotra-2026.docx",
-    "url": ""
-   },
-   {
-    "name": "The six VSS policies, filed as reusable templates",
-    "status": "gap",
-    "note": "Possibly the most valuable unfiled asset in the practice -- check before building anything new"
-   }
-  ],
-  "12": [
-   {
-    "name": "Default indicator set + adoption measurement method",
-    "status": "gap",
-    "note": "Endline = the Step-8 instrument re-run; no instrument, no endline"
-   }
-  ],
-  "13": [
-   {
-    "name": "Handover pack template",
-    "status": "draft",
-    "note": "DRAFT WRITTEN, lives in this app -- review before first client use",
-    "tpl": "handover-pack"
-   },
-   {
-    "name": "Ownership assignment matrix + review calendar",
-    "status": "draft",
-    "tpl": "handover-pack",
-    "note": "DRAFT WRITTEN, lives in this app -- review before first client use"
-   },
-   {
-    "name": "Case-study + reference request",
-    "status": "draft",
-    "note": "DRAFT WRITTEN, lives in this app -- review before first client use",
-    "tpl": "case-study-request"
-   }
-  ],
-  "14": [
-   {
-    "name": "Lesson log format",
-    "status": "draft",
-    "location": "methodology-v1.md §3.3 -- situation, evidence, action, outcome, lesson, next revision",
-    "url": "",
-    "tpl": "lesson-log",
-    "note": "DRAFT WRITTEN, lives in this app -- review before first client use"
-   },
-   {
-    "name": "Template library (versioned per §3.5)",
-    "status": "gap"
-   }
-  ],
-  "+90": [
-   {
-    "name": "The one question: 'is it still being used?'",
-    "status": "exists",
-    "location": "One calendar entry per closed engagement -- turns the VSS lucky find into method",
-    "url": ""
-   }
-  ]
+ "0": [
+ {
+ "name": "Entry criteria -- the five tests",
+ "status": "exists",
+ "location": "methodology-v1.md",
+ "url": ""
+ },
+ {
+ "name": "ClickUp Pre-Planning List (comms model · members · issue · ask · terms)",
+ "status": "exists",
+ "location": "ClickUp: NGO Consultation / OD Process / Pre Planning List",
+ "url": ""
+ }
+ ],
+ "1": [
+ {
+ "name": "Touch-1 email rules (under 90 words, one verifiable fact, no attachment)",
+ "status": "exists",
+ "location": "00-identity/voice.md",
+ "url": ""
+ }
+ ],
+ "2": [
+ {
+ "name": "Follow-up schedule (T2 day 5 · T3 day 12 · T4 day 20)",
+ "status": "exists",
+ "location": "02-pipeline/followup-schedule.md",
+ "url": ""
+ },
+ {
+ "name": "The Touch-3 'pure value' artifact",
+ "status": "draft",
+ "note": "DRAFT WRITTEN, lives in this app -- review before first client use",
+ "tpl": "touch3-value"
+ }
+ ],
+ "3": [
+ {
+ "name": "Holding reply + scheduling note",
+ "status": "draft",
+ "note": "DRAFT WRITTEN, lives in this app -- review before first client use",
+ "tpl": "holding-reply"
+ }
+ ],
+ "4": [
+ {
+ "name": "OD Process Note -- English",
+ "status": "exists",
+ "location": "06-delivery/od/process-notes/OD_Process_Note_EN.docx · fill the five xxx placeholders before sending",
+ "url": ""
+ },
+ {
+ "name": "OD Process Note -- Hindi/English",
+ "status": "exists",
+ "location": "06-delivery/od/process-notes/OD_Process_Note_HI-EN.docx",
+ "url": ""
+ },
+ {
+ "name": "Seven discovery questions",
+ "status": "exists",
+ "location": "methodology-v1.md ",
+ "url": ""
+ },
+ {
+ "name": "20-minute call structure + note-capture format",
+ "status": "draft",
+ "note": "DRAFT WRITTEN, lives in this app -- review before first client use",
+ "tpl": "call-structure"
+ }
+ ],
+ "5": [
+ {
+ "name": "Proposal template",
+ "status": "draft",
+ "note": "DRAFT WRITTEN, lives in this app -- review before first client use",
+ "tpl": "proposal"
+ }
+ ],
+ "6": [
+ {
+ "name": "Terms of Reference template",
+ "status": "draft",
+ "note": "DRAFT WRITTEN, lives in this app -- review before first client use",
+ "tpl": "tor"
+ },
+ {
+ "name": "Payment terms: 50% advance / 50% on completion",
+ "status": "exists",
+ "location": "ClickUp Pre-Planning List · consider tying tranche 2 to handover, not the report",
+ "url": ""
+ }
+ ],
+ "7": [
+ {
+ "name": "Engagement brief template",
+ "status": "draft",
+ "note": "DRAFT WRITTEN, lives in this app -- review before first client use",
+ "tpl": "engagement-brief"
+ }
+ ],
+ "8": [
+ {
+ "name": "NGO Readiness Diagnostic (front-door self-check)",
+ "status": "exists",
+ "location": "02-pipeline/ngo-readiness-diagnostic.md · not a baseline instrument",
+ "url": ""
+ },
+ {
+ "name": "Ten Ingentis-audited diagnostic questions",
+ "status": "exists",
+ "location": "Step 8 rules box in this app's Reference view",
+ "url": ""
+ },
+ {
+ "name": "Interview guide",
+ "status": "draft",
+ "tpl": "interview-guide",
+ "note": "DRAFT WRITTEN, lives in this app -- review before first client use"
+ },
+ {
+ "name": "Document-request checklist",
+ "status": "draft",
+ "tpl": "doc-checklist",
+ "note": "DRAFT WRITTEN, lives in this app -- review before first client use"
+ },
+ {
+ "name": "Capacity assessment instrument + scoring",
+ "status": "draft",
+ "note": "DRAFT WRITTEN, lives in this app -- review before first client use",
+ "tpl": "capacity-assessment"
+ },
+ {
+ "name": "Observation protocol / interviewee confidentiality note",
+ "status": "draft",
+ "tpl": "confidentiality-note",
+ "note": "DRAFT WRITTEN, lives in this app -- review before first client use"
+ }
+ ],
+ "9": [
+ {
+ "name": "Diagnostic report template",
+ "status": "draft",
+ "note": "DRAFT WRITTEN, lives in this app -- review before first client use",
+ "tpl": "diagnostic-report"
+ },
+ {
+ "name": "Feedback session facilitation plan (90 min)",
+ "status": "draft",
+ "tpl": "feedback-plan",
+ "note": "DRAFT WRITTEN, lives in this app -- review before first client use"
+ }
+ ],
+ "10": [
+ {
+ "name": "OD Methodology v1.0 (Phase 4 carries the CLARITY gate)",
+ "status": "exists",
+ "location": "06-delivery/od/methodology-v1.md",
+ "url": ""
+ },
+ {
+ "name": "SMART Objective and Checklist (CDC)",
+ "status": "exists",
+ "location": "06-delivery/od/SMART Objective and Checklist.pdf",
+ "url": ""
+ },
+ {
+ "name": "Action plan + roadmap template",
+ "status": "draft",
+ "note": "DRAFT WRITTEN, lives in this app -- review before first client use",
+ "tpl": "action-plan"
+ }
+ ],
+ "11": [
+ {
+ "name": "VSS case note -- proof of Phase 5 delivered",
+ "status": "exists",
+ "location": "00-identity/practice/case-notes/Case-Note-VSS-Balotra-2026.docx",
+ "url": ""
+ },
+ {
+ "name": "The six VSS policies, filed as reusable templates",
+ "status": "gap",
+ "note": "Possibly the most valuable unfiled asset in the practice -- check before building anything new"
+ }
+ ],
+ "12": [
+ {
+ "name": "Default indicator set + adoption measurement method",
+ "status": "gap",
+ "note": "Endline = the Step-8 instrument re-run; no instrument, no endline"
+ }
+ ],
+ "13": [
+ {
+ "name": "Handover pack template",
+ "status": "draft",
+ "note": "DRAFT WRITTEN, lives in this app -- review before first client use",
+ "tpl": "handover-pack"
+ },
+ {
+ "name": "Ownership assignment matrix + review calendar",
+ "status": "draft",
+ "tpl": "handover-pack",
+ "note": "DRAFT WRITTEN, lives in this app -- review before first client use"
+ },
+ {
+ "name": "Case-study + reference request",
+ "status": "draft",
+ "note": "DRAFT WRITTEN, lives in this app -- review before first client use",
+ "tpl": "case-study-request"
+ }
+ ],
+ "14": [
+ {
+ "name": "Lesson log format",
+ "status": "draft",
+ "location": "methodology-v1.md -- situation, evidence, action, outcome, lesson, next revision",
+ "url": "",
+ "tpl": "lesson-log",
+ "note": "DRAFT WRITTEN, lives in this app -- review before first client use"
+ },
+ {
+ "name": "Template library (versioned per)",
+ "status": "gap"
+ }
+ ],
+ "+90": [
+ {
+ "name": "The one question: 'is it still being used?'",
+ "status": "exists",
+ "location": "One calendar entry per closed engagement -- turns the VSS lucky find into method",
+ "url": ""
+ }
+ ]
  }
 }
