@@ -1,0 +1,46 @@
+{
+  "updated": "2026-08-15",
+  "note": "Step -> document registry. 'exists' items link to real files in the workspace (06-delivery/od/ and its neighbours). 'placeholder' items are named gaps -- visible on purpose so the app never pretends a template exists before it does.",
+  "byStep": {
+    "1": [
+      { "name": "Touch-1 email rules (voice.md)", "status": "exists", "path": "../../../00-identity/voice.md" }
+    ],
+    "4": [
+      { "name": "OD Process Note -- English", "status": "exists", "path": "../process-notes/OD Consultation Work/OD_Process_Note_EN.docx" },
+      { "name": "OD Process Note -- Hindi/English", "status": "exists", "path": "../process-notes/OD Consultation Work/OD_Process_Note_HI-EN.docx" }
+    ],
+    "5": [
+      { "name": "Proposal template", "status": "placeholder", "note": "Largest single gap in the package -- where the pilot rate and the case-study exchange are stated" }
+    ],
+    "6": [
+      { "name": "Terms of Reference template", "status": "placeholder", "note": "Promised as the Phase-1 deliverable in the Process Note; does not exist yet" },
+      { "name": "Payment terms (50% / 50%)", "status": "exists", "note": "From Rahul's own ClickUp Pre-Planning List, 14 Aug 2026" }
+    ],
+    "8": [
+      { "name": "NGO Readiness Diagnostic (front-door self-check)", "status": "exists", "path": "../../../02-pipeline/ngo-readiness-diagnostic.md" },
+      { "name": "Interview guide", "status": "placeholder" },
+      { "name": "Document-request checklist", "status": "placeholder" },
+      { "name": "Capacity assessment instrument + scoring", "status": "placeholder", "note": "Adapt Marguerite Casey OCAT, free, spreadsheet-based" },
+      { "name": "Observation protocol / interviewee confidentiality note", "status": "placeholder" }
+    ],
+    "9": [
+      { "name": "Diagnostic report template", "status": "placeholder" }
+    ],
+    "10": [
+      { "name": "OD Methodology v1.0 (Phase 4, the CLARITY gate)", "status": "exists", "path": "../methodology-v1.md" },
+      { "name": "SMART Objective and Checklist (CDC)", "status": "exists", "path": "../SMART Objective and Checklist.pdf" },
+      { "name": "Action plan + roadmap template", "status": "placeholder" }
+    ],
+    "11": [
+      { "name": "VSS case note -- proof of Phase 5 delivered", "status": "exists", "path": "../../../00-identity/practice/case-notes/Case-Note-VSS-Balotra-2026.docx" },
+      { "name": "The six VSS policies, filed as reusable templates", "status": "placeholder", "note": "Possibly the most valuable unfiled asset in the practice -- check before building anything new" }
+    ],
+    "13": [
+      { "name": "Handover pack template", "status": "placeholder" },
+      { "name": "Ownership assignment matrix", "status": "placeholder" }
+    ],
+    "14": [
+      { "name": "Lesson log format (methodology §3.3)", "status": "placeholder" }
+    ]
+  }
+}

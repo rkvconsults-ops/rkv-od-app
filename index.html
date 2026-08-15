@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The OD Dashboard — RKV Consulting</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="kicker-row">
+      <div class="kicker">RKV Consulting &middot; OD Practice &middot; v1.0</div>
+      <span class="sync-pill local" id="syncPill">Local only</span>
+    </div>
+    <h1 class="apptitle">The OD Dashboard</h1>
+    <nav>
+      <a href="#/" data-route="home">Clients</a>
+      <a href="#/dashboard" data-route="dashboard">Dashboard</a>
+      <a href="#/reference" data-route="reference">Reference</a>
+      <a href="#/settings" data-route="settings">Settings</a>
+    </nav>
+  </header>
+
+  <div id="app"><div class="empty">Loading&hellip;</div></div>
+
+  <div class="copyright">&copy; 2026 Rahul K. Vimal &middot; RKV Consulting. All rights reserved. Internal delivery tool.</div>
+</div>
+
+<script src="store.js"></script>
+<script src="sync.js"></script>
+<script src="engine.js"></script>
+<script src="app.js"></script>
+<script>
+  // documents.json loaded onto window.DOCS before App boots, so app.js can
+  // stay synchronous when rendering the client-detail documents panel.
+  fetch("documents.json").then(r => r.json()).then(d => { window.DOCS = d; App.boot(); })
+    .catch(() => { window.DOCS = { byStep: {} }; App.boot(); });
+</script>
+</body>
+</html>
