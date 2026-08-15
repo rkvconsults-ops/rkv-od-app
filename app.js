@@ -100,6 +100,7 @@ const App = (() => {
     else if (r.name === "intake") viewIntake(r.query.mode === "client");
     else if (r.name === "import") viewImport();
     else if (r.name === "doc") viewDoc(r.arg, r.query.client);
+    else if (r.name === "docs") viewDocsIndex();
     else if (r.name === "reference") viewReference();
     else if (r.name === "dashboard") viewDashboard();
     else if (r.name === "settings") viewSettings();
@@ -134,6 +135,13 @@ const App = (() => {
         <span><b>${used} / 5</b> pilot slots used <span class="mut">&middot; ₹45,000 each, expires at slot 5</span></span>
       </div>`;
 
+    const calendlyHome = localStorage.getItem("od_calendly_url") || "";
+    html += `<div class="row" style="flex-wrap:wrap;margin-bottom:4px">
+      <a class="btn small" href="https://mail.google.com/mail/?view=cm&fs=1" target="_blank" rel="noopener">&#9993; New email</a>
+      <a class="btn small" href="https://calendar.google.com/calendar/render?action=TEMPLATE" target="_blank" rel="noopener">&#128197; New calendar event</a>
+      ${calendlyHome ? `<a class="btn small" href="${esc(calendlyHome)}" target="_blank" rel="noopener">&#128337; Calendly</a>` : ""}
+      <a class="btn small" href="#/docs">&#128196; All documents</a>
+    </div>`;
     html += legendHTML();
     if (clients.length === 0) {
       html += `<div class="empty">No clients yet. Two ways to begin:<br>
@@ -647,6 +655,31 @@ const App = (() => {
         ${calendly ? `<a class="btn small" href="${esc(calendly)}" target="_blank" rel="noopener">&#128337; Open Calendly</a>`
                    : `<a class="btn small" href="#/settings">&#128337; Set Calendly link&hellip;</a>`}
       </div>`;
+  }
+
+  // Every document in one place, with review status -- the review desk.
+  function viewDocsIndex() {
+    const T = (window.TPL && window.TPL.templates) || {};
+    const order = ["entry-criteria","touch1-email","touch3-value","readiness-check","holding-reply",
+      "call-structure","process-note","proposal","tor","engagement-brief","doc-checklist",
+      "confidentiality-note","interview-guide","capacity-assessment","diagnostic-report",
+      "feedback-plan","action-plan","handover-pack","case-study-request","lesson-log"];
+    const ids = order.filter((id) => T[id]).concat(Object.keys(T).filter((id) => !order.includes(id)));
+    let html = `<div class="view"><h2 class="vtitle">Documents</h2>
+      <p class="sm mut">Every document the practice uses, in engagement order. <b>Draft</b> = written,
+      awaiting your review -- read it, ask for edits, or approve it. <b>Final</b> = approved by you.</p>
+      <div class="card">`;
+    ids.forEach((id) => {
+      const t = T[id];
+      html += `<div class="docrow">
+        <span class="st ${t.status === "final" ? "exists" : "placeholder"}">${t.status === "final" ? "final" : "draft"}</span>
+        <span>${esc(t.title)}</span>
+        <span class="xs mut" style="margin-left:auto;white-space:nowrap">Step ${esc(t.step)}</span>
+        <a href="#/doc/${id}" class="xs" style="margin-left:10px">open</a>
+      </div>`;
+    });
+    html += `</div></div>`;
+    root.innerHTML = html;
   }
 
   function viewImport() {
