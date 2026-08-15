@@ -231,7 +231,7 @@
       ],
       [
        "ok",
-       "Rehearsed answer to “how will you actually do this?” — look before you fix → small adoptable set → tested with real users → handed over. Ends on the VSS monthly-review evidence"
+       "Rehearsed answer to “how will you actually do this?” — look before you fix → small adoptable set → tested with real users → handed over. Ends on the delivered-engagement adoption evidence: the client made documentation a standing item in their own monthly review after handover"
       ],
       [
        "miss",
@@ -383,7 +383,7 @@
    "id": 3,
    "title": "Delivery",
    "range": "The 8-phase cycle · Kickoff → Handover",
-   "desc": "Diagnosis first, always. One phase is fully proven (Implementation — VSS). One carries the CLARITY gate.",
+   "desc": "Diagnosis first, always. One phase is fully proven in a delivered engagement (Implementation). One carries the CLARITY gate.",
    "intro": "the methodology: every engagement starts with diagnosis, not solution design. Phase 5 is the one complete stage — six adopted policies at a delivered engagement prove it. Phase 2 is the weakest and most exposed: a scored capacity baseline is promised in writing and cannot yet be produced.",
    "steps": [
     {
