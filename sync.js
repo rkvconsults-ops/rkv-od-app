@@ -130,6 +130,37 @@ const Sync = (() => {
     return res.json();
   }
 
+  // Single-shot PUT, no retry -- caller owns conflict handling.
+  async function putFileOnce(path, content, sha, message) {
+    const cfg = getConfig();
+    const body = { message, content: b64Encode(content) };
+    if (sha) body.sha = sha;
+    return fetch(`${API}/repos/${cfg.owner}/${cfg.repo}/contents/${path}`, {
+      method: "PUT", headers: headers(cfg), body: JSON.stringify(body),
+    });
+  }
+
+  // Merge-safe index update. On conflict it re-reads the CURRENT list and
+  // re-adds this id to it, so two devices adding different clients at the
+  // same moment both survive -- putFile's blind retry would have replayed a
+  // stale list and silently dropped whichever id landed first.
+  async function updateIndex(id) {
+    for (let attempt = 0; attempt < 4; attempt++) {
+      const idxFile = await getFile("index.json");
+      const ids = idxFile ? (JSON.parse(idxFile.content).ids || []) : [];
+      if (ids.includes(id)) return;
+      ids.push(id);
+      const res = await putFileOnce("index.json", JSON.stringify({ ids }, null, 2),
+        idxFile ? idxFile.sha : undefined, `Add ${id} to index`);
+      if (res.ok) return;
+      if (res.status !== 409 && res.status !== 422) {
+        throw new Error(`GitHub write failed (${res.status}): ${await safeMsg(res)}`);
+      }
+      // conflict: loop -- next attempt re-reads the fresh list
+    }
+    throw new Error("index.json kept conflicting after 4 attempts");
+  }
+
   async function safeMsg(res) {
     try { return (await res.json()).message || res.statusText; }
     catch (e) { return res.statusText; }
@@ -199,13 +230,7 @@ const Sync = (() => {
       client._sha = result.content.sha;
       Store.saveLocalOnly(client);
 
-      const idxFile = await getFile("index.json");
-      const ids = idxFile ? JSON.parse(idxFile.content).ids : [];
-      if (!ids.includes(client.id)) {
-        ids.push(client.id);
-        await putFile("index.json", JSON.stringify({ ids }, null, 2), idxFile ? idxFile.sha : undefined,
-          `Add ${client.id} to index`);
-      }
+      await updateIndex(client.id);
       dequeue(client.id);
       lastError = null;
       setState(getQueue().length ? "pending" : "synced");

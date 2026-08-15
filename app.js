@@ -23,6 +23,23 @@ const App = (() => {
           .then(() => renderSyncPill())
           .catch((e) => toast("Sync on load failed: " + e.message));
       }
+
+      // Cross-device freshness: returning to this tab re-pulls from GitHub,
+      // so a client added on the phone appears on the desktop without anyone
+      // needing to know that "reload = refresh". Throttled to once per 20s.
+      let lastFocusPull = 0;
+      const focusPull = () => {
+        if (!Sync.isConfigured() || document.hidden) return;
+        const now = Date.now();
+        if (now - lastFocusPull < 20000) return;
+        lastFocusPull = now;
+        Sync.pullAll()
+          .then((r) => { if (r.pulled) render(); })
+          .then(() => Sync.flushQueue())
+          .catch(() => {}); // pill + Settings already surface errors
+      };
+      window.addEventListener("focus", focusPull);
+      document.addEventListener("visibilitychange", focusPull);
     }).catch((e) => {
       root.innerHTML = `<div class="empty">Could not load process-def.json.<br>${esc(e.message)}</div>`;
     });
