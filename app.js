@@ -30,11 +30,16 @@ const App = (() => {
       let lastFocusPull = 0;
       const focusPull = () => {
         if (!Sync.isConfigured() || document.hidden) return;
+        const rn = route().name;
+        // NEVER while a form is open -- a background render was wiping
+        // half-filled intake forms when Rahul switched desktops. Forms are
+        // sacred; sync waits.
+        if (rn === "intake" || rn === "import") return;
         const now = Date.now();
         if (now - lastFocusPull < 20000) return;
         lastFocusPull = now;
         Sync.pullAll()
-          .then((r) => { if (r.pulled) render(); })
+          .then((r) => { if (r.pulled || r.removed) render(); })
           .then(() => Sync.flushQueue())
           .catch(() => {}); // pill + Settings already surface errors
       };
@@ -74,22 +79,32 @@ const App = (() => {
   function nav(path) { location.hash = path; }
 
   // ---------------- render shell ----------------
+  // Re-rendering the SAME view (ticking a task, a background pull finding
+  // changes) keeps the scroll position -- the screen must never jump out
+  // from under a tap. Navigating to a DIFFERENT view starts at the top.
+  let _lastViewKey = null;
   function render() {
     const r = route();
+    const viewKey = r.name + "/" + (r.arg || "");
+    const sameView = viewKey === _lastViewKey;
+    _lastViewKey = viewKey;
+    const y = window.scrollY;
     document.querySelectorAll("nav a").forEach((a) => a.classList.remove("active"));
     const activeLink = document.querySelector(`nav a[data-route="${r.name}"]`);
     if (activeLink) activeLink.classList.add("active");
     renderSyncPill();
     document.body.classList.toggle("client-mode", r.name === "intake" && r.query.mode === "client");
 
-    if (r.name === "home") return viewHome();
-    if (r.name === "client") return viewClient(r.arg);
-    if (r.name === "intake") return viewIntake(r.query.mode === "client");
-    if (r.name === "import") return viewImport();
-    if (r.name === "reference") return viewReference();
-    if (r.name === "dashboard") return viewDashboard();
-    if (r.name === "settings") return viewSettings();
-    return viewHome();
+    if (r.name === "home") viewHome();
+    else if (r.name === "client") viewClient(r.arg);
+    else if (r.name === "intake") viewIntake(r.query.mode === "client");
+    else if (r.name === "import") viewImport();
+    else if (r.name === "reference") viewReference();
+    else if (r.name === "dashboard") viewDashboard();
+    else if (r.name === "settings") viewSettings();
+    else viewHome();
+
+    window.scrollTo(0, sameView ? y : 0);
   }
 
   function renderSyncPill() {
@@ -118,6 +133,7 @@ const App = (() => {
         <span><b>${used} / 5</b> pilot slots used <span class="mut">&middot; ₹45,000 each, expires at slot 5</span></span>
       </div>`;
 
+    html += legendHTML();
     if (clients.length === 0) {
       html += `<div class="empty">No clients yet. Two ways to begin:<br>
         <b>+ Add client</b> above for a new organisation &mdash; or, if your records
@@ -208,6 +224,7 @@ const App = (() => {
         <button class="btn small" onclick="App.addWait('${c.id}','waitingOnUs')">Add</button></div>
 
       <div class="section-label">Full step map for this client</div>
+      ${legendHTML()}
       <div class="steplist">${Engine.flat().map((s) => stepRowHTML(c, s)).join("")}</div>
 
       <div class="section-label">Log</div>
@@ -336,7 +353,7 @@ const App = (() => {
 
   // ---------------- INTAKE FORM ----------------
   function viewIntake(clientMode) {
-    root.innerHTML = `<div class="view">
+    root.innerHTML = `<div class="view" oninput="App.saveDraft()">
       <h2 class="vtitle">${clientMode ? "Organisation intake form" : "Add a client &mdash; intake"}</h2>
       <p class="sm mut">${clientMode
         ? "Please answer what you can &mdash; skip anything unclear, everything can be discussed later. When you submit, you'll get a short code to send back on WhatsApp or email. <b>Nothing is uploaded anywhere</b>; the code is the data, and only the person you send it to can read it."
@@ -347,7 +364,7 @@ const App = (() => {
           <div><label>Organisation *</label><input id="f_org" required></div>
           <div><label>Contact name</label><input id="f_contact"></div>
           <div><label>Contact title</label><input id="f_title"></div>
-          ${clientMode ? "" : `<div><label>Account / source code</label><input id="f_acct" placeholder="e.g. AKL-002"></div>`}
+          ${clientMode ? "" : `<div><label>Account / source code <span class="opt">(auto-filled, editable)</span></label><input id="f_acct" value="${esc(nextAcct())}"></div>`}
         </div>
       </fieldset>
 
@@ -373,16 +390,18 @@ const App = (() => {
 
       <fieldset><legend>Context</legend>
         <div class="formgrid">
-          <div><label>Existing communication model</label><input id="f_comms"></div>
+          <div><label>How does information move in the org today? <span class="opt">(their channels, not a theory)</span></label>
+            <input id="f_comms" placeholder="e.g. WhatsApp group + monthly meeting + paper registers"></div>
           <div><label>Active members in the org</label><input id="f_members"></div>
         </div>
       </fieldset>
 
-      ${clientMode ? "" : `<fieldset><legend>Baseline &mdash; 3 countable things, before anything changes</legend>
+      ${clientMode ? "" : `<fieldset><legend>Baseline &mdash; 3 numbers measured TODAY, so change can be proven later</legend>
+        <p class="xs mut" style="margin:2px 0 8px">Measure the problem before touching it. Six months later, measure the same three again &mdash; that before/after is the case study. Without this, results stay opinions.</p>
         <div class="formgrid">
-          <div><label>Metric 1</label><input id="f_b1" placeholder="e.g. days from field visit to report"></div>
-          <div><label>Metric 2</label><input id="f_b2"></div>
-          <div><label>Metric 3</label><input id="f_b3"></div>
+          <div><label>Number 1</label><input id="f_b1" placeholder="e.g. days from field visit to report reaching office: 11"></div>
+          <div><label>Number 2</label><input id="f_b2" placeholder="e.g. hands each report passes through: 4"></div>
+          <div><label>Number 3</label><input id="f_b3" placeholder="e.g. reports funder returned with queries last quarter: 6 of 10"></div>
         </div>
       </fieldset>`}
 
@@ -398,6 +417,50 @@ const App = (() => {
              <button class="btn primary" onclick="App.saveIntake()">Save client</button>`}
       </div>
       <div id="codeout"></div>
+    </div>`;
+    restoreDraft();
+  }
+
+  // Draft autosave: every keystroke in the intake form persists to
+  // localStorage; reopening the form restores it. Cleared only on save.
+  // With this, NOTHING can wipe a half-filled form -- not a render, not a
+  // reload, not switching desktops, not closing the tab.
+  const DRAFT_KEY = "od_intake_draft_v1";
+  function saveDraft() {
+    try { localStorage.setItem(DRAFT_KEY, JSON.stringify(readIntake())); } catch (e) {}
+  }
+  function restoreDraft() {
+    let d;
+    try { d = JSON.parse(localStorage.getItem(DRAFT_KEY) || "null"); } catch (e) { return; }
+    if (!d) return;
+    const set = (id, v) => { const el = document.getElementById(id); if (el && v) el.value = v; };
+    set("f_org", d.org); set("f_contact", d.contact); set("f_title", d.title); set("f_acct", d.acct);
+    set("f_issue", d.issue); set("f_ask", d.ask);
+    set("f_q1", d.q1); set("f_q2", d.q2); set("f_q3", d.q3); set("f_q4", d.q4);
+    set("f_q5", d.q5); set("f_q6", d.q6); set("f_q7", d.q7);
+    set("f_comms", d.comms); set("f_members", d.members);
+    if (d.baseline) { set("f_b1", d.baseline[0]); set("f_b2", d.baseline[1]); set("f_b3", d.baseline[2]); }
+    set("f_notes", d.notes);
+  }
+  function clearDraft() { try { localStorage.removeItem(DRAFT_KEY); } catch (e) {} }
+
+  // Auto-suggests the next AKL-nnn source code from the highest one in use.
+  function nextAcct() {
+    let max = 0;
+    Store.all().forEach((c) => {
+      const m = /^AKL-(\d+)$/.exec(c.acct || "");
+      if (m) max = Math.max(max, parseInt(m[1], 10));
+    });
+    return "AKL-" + String(max + 1).padStart(3, "0");
+  }
+
+  // The colour key, in plain words -- shown wherever the coloured dots are.
+  function legendHTML() {
+    return `<div class="colorkey">
+      <span><i class="ck" style="background:var(--ok)"></i>Green = step done</span>
+      <span><i class="ck" style="background:var(--part)"></i>Orange = in progress now</span>
+      <span><i class="ck" style="background:var(--block)"></i>Red = blocked, needs something</span>
+      <span><i class="ck" style="background:var(--line)"></i>Grey = not started yet</span>
     </div>`;
   }
 
@@ -427,6 +490,7 @@ const App = (() => {
       log: [{ date: Engine.todayISO(), event: "Client added via intake form" }],
     };
     Store.save(client);
+    clearDraft();
     toast("Client added");
     nav("client/" + id);
   }
@@ -783,6 +847,7 @@ const App = (() => {
   return {
     boot, nav, render, toast,
     saveIntake, shareIntakeLink, makeIntakeCode, doImportCode, exportBackup, importBackup,
+    saveDraft,
     toggleTask, toggleGate, doAdvance, addWait, removeWait, confirmDelete,
     testConnection, saveSync, disconnectSync, syncNow,
   };
