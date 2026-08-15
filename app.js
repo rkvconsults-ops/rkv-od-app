@@ -110,7 +110,10 @@ const App = (() => {
       </div>`;
 
     if (clients.length === 0) {
-      html += `<div class="empty">No clients yet. Add one to get started.</div>`;
+      html += `<div class="empty">No clients yet. Two ways to begin:<br>
+        <b>+ Add client</b> above for a new organisation &mdash; or, if your records
+        live on GitHub already, configure <b>Settings &rarr; GitHub sync</b> and
+        they will pull in automatically.</div>`;
     } else {
       clients.forEach((c) => { html += clientCard(c); });
     }
@@ -254,13 +257,15 @@ const App = (() => {
   function documentsHTML(step) {
     const docs = (window.DOCS && window.DOCS.byStep && window.DOCS.byStep[step.n]) || [];
     if (!docs.length) return "";
-    let html = `<div class="section-label">Documents for this step</div><div class="card">`;
+    let html = `<div class="section-label">Documents &amp; package for this step</div><div class="card">`;
     docs.forEach((d) => {
       html += `<div class="docrow">
-        <span class="st ${d.status}">${d.status === "exists" ? "have it" : "gap"}</span>
+        <span class="st ${d.status === "exists" ? "exists" : "placeholder"}">${d.status === "exists" ? "have it" : "gap"}</span>
         <span>${esc(d.name)}</span>
-        ${d.path ? `<a href="${esc(d.path)}" class="xs" style="margin-left:auto" target="_blank">open</a>` : ""}
-      </div>${d.note ? `<div class="xs mut" style="padding-left:64px;margin-top:-3px;margin-bottom:4px">${esc(d.note)}</div>` : ""}`;
+        ${d.url ? `<a href="${esc(d.url)}" class="xs" style="margin-left:auto" target="_blank" rel="noopener">open</a>` : ""}
+      </div>`;
+      const sub = [d.location ? "Where: " + d.location : null, d.note || null].filter(Boolean).join(" · ");
+      if (sub) html += `<div class="xs mut" style="padding-left:64px;margin-top:-3px;margin-bottom:6px">${esc(sub)}</div>`;
     });
     html += `</div>`;
     return html;
@@ -313,6 +318,9 @@ const App = (() => {
       <div class="step-body">
         ${note ? `<div class="rulebox">${esc(note)}</div>` : ""}
         ${taskGroupsHTML(c, s)}
+        ${(s.rules || []).map((r) => `<div class="rulebox"><b>${esc(r.t)}</b><br>${esc(r.d)}</div>`).join("")}
+        ${(s.qa && s.qa.length) ? `<div class="qa">${s.qa.map((x) => `<details><summary>${esc(x.q)}</summary><div class="ans">${esc(x.a)}</div></details>`).join("")}</div>` : ""}
+        ${documentsHTML(s)}
       </div>
     </div>`;
   }
@@ -438,6 +446,9 @@ const App = (() => {
               <div><h5>Send / share</h5><ul>${(s.send || []).map((h) => `<li>${esc(h[1])}</li>`).join("")}</ul></div>
               <div><h5>Get back out</h5><ul>${(s.get || []).map((h) => `<li>${esc(h[1])}</li>`).join("")}</ul></div>
             </div>
+            ${(s.rules || []).map((r) => `<div class="rulebox"><b>${esc(r.t)}</b><br>${esc(r.d)}</div>`).join("")}
+            ${(s.qa && s.qa.length) ? `<div class="qa">${s.qa.map((x) => `<details><summary>${esc(x.q)}</summary><div class="ans">${esc(x.a)}</div></details>`).join("")}</div>` : ""}
+            ${documentsHTML(s)}
           </div></details>`;
       });
       html += `</div>`;
@@ -447,6 +458,31 @@ const App = (() => {
   }
 
   // ---------------- DASHBOARD ----------------
+  // The open-the-app-in-the-morning view: everything currently owed,
+  // aggregated across active clients, each line linking to its client.
+  function needsAttentionHTML(clients) {
+    const act = clients.filter((c) => c.status === "active");
+    const owedByUs = [];
+    const stuckOnClient = [];
+    act.forEach((c) => {
+      (c.waitingOnUs || []).forEach((w) => owedByUs.push({ c, w }));
+      (c.waitingOnClient || []).forEach((w) => stuckOnClient.push({ c, w }));
+    });
+    if (!owedByUs.length && !stuckOnClient.length) return "";
+    const row = (x) => `<div class="docrow" style="cursor:pointer" onclick="App.nav('client/${x.c.id}')">
+      <span>${esc(x.w)}</span>
+      <span class="xs mut" style="margin-left:auto;white-space:nowrap">${esc(x.c.org)}</span>
+    </div>`;
+    let html = `<div class="section-label">Needs attention</div>`;
+    if (owedByUs.length) {
+      html += `<div class="card"><b class="sm">We owe (${owedByUs.length})</b>${owedByUs.map(row).join("")}</div>`;
+    }
+    if (stuckOnClient.length) {
+      html += `<div class="card"><b class="sm">Waiting on clients (${stuckOnClient.length})</b>${stuckOnClient.map(row).join("")}</div>`;
+    }
+    return html;
+  }
+
   function viewDashboard() {
     const clients = Store.all();
     const used = Store.pilotsUsed();
@@ -460,6 +496,7 @@ const App = (() => {
         <div class="stat"><b>${clients.length}</b><small>Total clients tracked</small></div>
         <div class="stat"><b>${flat.length}</b><small>Steps in the process</small></div>
       </div>
+      ${needsAttentionHTML(clients)}
       <div class="section-label">Package build-status, by stage</div>`;
     Engine.def().stages.forEach((st) => {
       const items = st.steps.reduce((a, s) => a.concat(s.have || []), []);

@@ -186,3 +186,10 @@ details.refstep .body{padding:4px 16px 14px;font-size:13px}
   .step-head{padding:11px 12px;gap:9px}
   nav a{padding:6px 12px;font-size:12px}
 }
+
+/* Q&A accordions (Reference view) */
+.qa{margin-top:12px}
+.qa details{border:1px solid var(--line);border-radius:9px;margin-bottom:7px;background:#fdfcfa}
+.qa summary{padding:9px 13px;cursor:pointer;font-size:13.5px;font-weight:600;list-style:none;display:flex;gap:8px}
+.qa summary::before{content:"Q";color:var(--accent);font-weight:800}
+.qa .ans{padding:2px 13px 11px 33px;font-size:13px;color:#3a3f47}

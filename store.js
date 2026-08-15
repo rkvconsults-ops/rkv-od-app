@@ -36,31 +36,15 @@ const Store = (() => {
     }
   }
 
-  // No real client data ships in this file, deliberately -- this code is in
-  // the PUBLIC app repo (rkv-od-app), and real client records belong only
-  // in the PRIVATE data repo (rkv-od-data), pulled in by Sync once
-  // configured (see sync.js). A single clearly-fake example client seeds a
-  // fresh install so the UI isn't empty before sync is set up; it is not
-  // real data and says so on its face.
+  // No seed data at all, deliberately -- twice over. (1) This code is in
+  // the PUBLIC app repo, so real client data can never ship in it. (2) The
+  // earlier fake "Sample NGO" placeholder got auto-pushed to the real data
+  // repo by the stranded-client flush on 15 Aug -- fake data polluting real
+  // records. A fresh install now starts genuinely empty; the home view
+  // explains the two ways to begin (add a client, or configure sync and
+  // pull existing records).
   function _seed() {
-    return [
-      {
-        id: "ENG-000",
-        org: "Sample NGO (edit or delete me)",
-        contact: "Example Director",
-        acct: null,
-        status: "active",
-        note: "This is placeholder data, not a real client. Once GitHub sync is configured in Settings, your real client records replace this automatically. Feel free to delete it now.",
-        pilotSlot: null,
-        currentStep: "0",
-        stepState: {},
-        tasks: {},
-        clarityConfirmed: {},
-        waitingOnClient: [],
-        waitingOnUs: [],
-        log: [{ date: Engine.todayISO(), event: "Sample client created on first install" }],
-      },
-    ];
+    return [];
   }
 
   function all() {
@@ -105,26 +89,16 @@ const Store = (() => {
     // a destructive remote delete automatically on every local remove.
   }
 
-  // A monotonic counter, independent of who currently exists. Deriving the
-  // next id from max(existing ids) would let a deleted client's id get
-  // handed to a completely different organisation later -- a real problem
-  // for something meant to be a permanent record. The counter only ever
-  // goes up, seeded once from today's real data (ENG-000, ENG-001) so new
-  // ids continue the real sequence rather than restarting it.
-  const COUNTER_KEY = "od_id_counter_v1";
+  // Collision-proof ids. The old scheme (ENG-001, ENG-002...) minted the
+  // next number from local state -- two devices offline at the same moment
+  // would both mint ENG-003 for two different organisations, and sync's
+  // per-id files would then silently merge them into one. Timestamp base36
+  // plus random suffix cannot collide across devices in practice, and old
+  // ENG-NNN ids remain perfectly valid alongside.
   function nextId() {
-    let n = parseInt(localStorage.getItem(COUNTER_KEY) || "", 10);
-    if (isNaN(n)) {
-      let max = 0;
-      all().forEach((c) => {
-        const m = /ENG-(\d+)/.exec(c.id);
-        if (m) max = Math.max(max, parseInt(m[1], 10));
-      });
-      n = max;
-    }
-    n += 1;
-    localStorage.setItem(COUNTER_KEY, String(n));
-    return "ENG-" + String(n).padStart(3, "0");
+    const t = Date.now().toString(36);
+    const r = Math.random().toString(36).slice(2, 4);
+    return `ENG-${t}${r}`.toUpperCase();
   }
 
   function pilotsUsed() {

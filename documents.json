@@ -1,46 +1,71 @@
 {
   "updated": "2026-08-15",
-  "note": "Step -> document registry. 'exists' items link to real files in the workspace (06-delivery/od/ and its neighbours). 'placeholder' items are named gaps -- visible on purpose so the app never pretends a template exists before it does.",
+  "note": "Step -> document registry. 'exists' items name real artifacts and say where they live in the workspace ('location' is a human pointer, not a link -- the hosted app cannot reach local files). The 'url' field is empty until a document is uploaded somewhere linkable (Drive etc); when filled, the app renders a real open link. 'gap' items are named gaps, visible on purpose so the app never pretends a template exists before it does.",
   "byStep": {
+    "0": [
+      { "name": "Entry criteria -- the five tests", "status": "exists", "location": "methodology-v1.md §1.2 · aakalan.md", "url": "" },
+      { "name": "ClickUp Pre-Planning List (comms model · members · issue · ask · terms)", "status": "exists", "location": "ClickUp: NGO Consultation / OD Process / Pre Planning List", "url": "" }
+    ],
     "1": [
-      { "name": "Touch-1 email rules (voice.md)", "status": "exists", "path": "../../../00-identity/voice.md" }
+      { "name": "Touch-1 email rules (under 90 words, one verifiable fact, no attachment)", "status": "exists", "location": "00-identity/voice.md", "url": "" }
+    ],
+    "2": [
+      { "name": "Follow-up cadence (T2 day 5 · T3 day 12 · T4 day 20)", "status": "exists", "location": "02-pipeline/followup-cadence.md", "url": "" },
+      { "name": "The Touch-3 'pure value' artifact", "status": "gap", "note": "Undefined -- the NGO readiness self-check is the natural candidate once it ships" }
+    ],
+    "3": [
+      { "name": "Holding reply + scheduling note", "status": "gap", "note": "Two paragraphs and a calendar slot -- smallest gap in the whole map" }
     ],
     "4": [
-      { "name": "OD Process Note -- English", "status": "exists", "path": "../process-notes/OD Consultation Work/OD_Process_Note_EN.docx" },
-      { "name": "OD Process Note -- Hindi/English", "status": "exists", "path": "../process-notes/OD Consultation Work/OD_Process_Note_HI-EN.docx" }
+      { "name": "OD Process Note -- English", "status": "exists", "location": "06-delivery/od/process-notes/OD_Process_Note_EN.docx · fill the five xxx placeholders before sending", "url": "" },
+      { "name": "OD Process Note -- Hindi/English", "status": "exists", "location": "06-delivery/od/process-notes/OD_Process_Note_HI-EN.docx", "url": "" },
+      { "name": "Seven discovery questions", "status": "exists", "location": "methodology-v1.md §1.3", "url": "" },
+      { "name": "20-minute call structure + note-capture format", "status": "gap", "note": "Seven questions plus rapport plus your own answer does not fit 20 minutes; nothing says what to cut" }
     ],
     "5": [
-      { "name": "Proposal template", "status": "placeholder", "note": "Largest single gap in the package -- where the pilot rate and the case-study exchange are stated" }
+      { "name": "Proposal template", "status": "gap", "note": "Largest single gap in the package -- where the ₹45,000 pilot rate and the case-study exchange are stated in writing" }
     ],
     "6": [
-      { "name": "Terms of Reference template", "status": "placeholder", "note": "Promised as the Phase-1 deliverable in the Process Note; does not exist yet" },
-      { "name": "Payment terms (50% / 50%)", "status": "exists", "note": "From Rahul's own ClickUp Pre-Planning List, 14 Aug 2026" }
+      { "name": "Terms of Reference template", "status": "gap", "note": "Promised as the Phase-1 deliverable in the Process Note; must carry the case-study consent clause -- the pilot discount is traded for it" },
+      { "name": "Payment terms: 50% advance / 50% on completion", "status": "exists", "location": "ClickUp Pre-Planning List · consider tying tranche 2 to handover, not the report", "url": "" }
+    ],
+    "7": [
+      { "name": "Engagement brief template", "status": "gap", "note": "Set the 3-5 success indicators here, before anything changes -- skipping this is what makes Step 12 impossible" }
     ],
     "8": [
-      { "name": "NGO Readiness Diagnostic (front-door self-check)", "status": "exists", "path": "../../../02-pipeline/ngo-readiness-diagnostic.md" },
-      { "name": "Interview guide", "status": "placeholder" },
-      { "name": "Document-request checklist", "status": "placeholder" },
-      { "name": "Capacity assessment instrument + scoring", "status": "placeholder", "note": "Adapt Marguerite Casey OCAT, free, spreadsheet-based" },
-      { "name": "Observation protocol / interviewee confidentiality note", "status": "placeholder" }
+      { "name": "NGO Readiness Diagnostic (front-door self-check)", "status": "exists", "location": "02-pipeline/ngo-readiness-diagnostic.md · not a baseline instrument", "url": "" },
+      { "name": "Ten Ingentis-audited diagnostic questions", "status": "exists", "location": "Step 8 rules box in this app's Reference view", "url": "" },
+      { "name": "Interview guide", "status": "gap" },
+      { "name": "Document-request checklist", "status": "gap" },
+      { "name": "Capacity assessment instrument + scoring", "status": "gap", "note": "Adapt Marguerite Casey OCAT -- free, spreadsheet-based, four domains" },
+      { "name": "Observation protocol / interviewee confidentiality note", "status": "gap" }
     ],
     "9": [
-      { "name": "Diagnostic report template", "status": "placeholder" }
+      { "name": "Diagnostic report template", "status": "gap", "note": "Apply writing-craft §5b plain-language test and §3 blame-direction -- the reader is the person whose work it describes" }
     ],
     "10": [
-      { "name": "OD Methodology v1.0 (Phase 4, the CLARITY gate)", "status": "exists", "path": "../methodology-v1.md" },
-      { "name": "SMART Objective and Checklist (CDC)", "status": "exists", "path": "../SMART Objective and Checklist.pdf" },
-      { "name": "Action plan + roadmap template", "status": "placeholder" }
+      { "name": "OD Methodology v1.0 (Phase 4 carries the CLARITY gate)", "status": "exists", "location": "06-delivery/od/methodology-v1.md", "url": "" },
+      { "name": "SMART Objective and Checklist (CDC)", "status": "exists", "location": "06-delivery/od/SMART Objective and Checklist.pdf", "url": "" },
+      { "name": "Action plan + roadmap template", "status": "gap", "note": "Impact-vs-effort grid required by §7.2 does not exist either" }
     ],
     "11": [
-      { "name": "VSS case note -- proof of Phase 5 delivered", "status": "exists", "path": "../../../00-identity/practice/case-notes/Case-Note-VSS-Balotra-2026.docx" },
-      { "name": "The six VSS policies, filed as reusable templates", "status": "placeholder", "note": "Possibly the most valuable unfiled asset in the practice -- check before building anything new" }
+      { "name": "VSS case note -- proof of Phase 5 delivered", "status": "exists", "location": "00-identity/practice/case-notes/Case-Note-VSS-Balotra-2026.docx", "url": "" },
+      { "name": "The six VSS policies, filed as reusable templates", "status": "gap", "note": "Possibly the most valuable unfiled asset in the practice -- check before building anything new" }
+    ],
+    "12": [
+      { "name": "Default indicator set + adoption measurement method", "status": "gap", "note": "Endline = the Step-8 instrument re-run; no instrument, no endline" }
     ],
     "13": [
-      { "name": "Handover pack template", "status": "placeholder" },
-      { "name": "Ownership assignment matrix", "status": "placeholder" }
+      { "name": "Handover pack template", "status": "gap", "note": "Largely written already if 'which meeting does this live in' was answered at Step 10" },
+      { "name": "Ownership assignment matrix + review calendar", "status": "gap" },
+      { "name": "Case-study + reference request", "status": "gap", "note": "Ask at handover while goodwill is current -- this is what the pilot rate purchased" }
     ],
     "14": [
-      { "name": "Lesson log format (methodology §3.3)", "status": "placeholder" }
+      { "name": "Lesson log format", "status": "exists", "location": "methodology-v1.md §3.3 -- situation, evidence, action, outcome, lesson, next revision", "url": "" },
+      { "name": "Template library (versioned per §3.5)", "status": "gap" }
+    ],
+    "+90": [
+      { "name": "The one question: 'is it still being used?'", "status": "exists", "location": "One calendar entry per closed engagement -- turns the VSS lucky find into method", "url": "" }
     ]
   }
 }
