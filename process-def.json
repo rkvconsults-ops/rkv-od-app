@@ -15,7 +15,7 @@
     }
   ],
   "gate_banner": "Before any intervention is designed (Stage III · Step 10), the engagement's specific problem routes through the Clarity agent — matched on discipline, geography and scale. The design decision stays Rahul's; the client never sees the step. Skip only when the practice has already delivered and evidenced the same intervention in a comparable organisation, and name which conditions the new case satisfies (rule 2a).",
-  "sources_line": "Generated from: engagement-runbook-2026-08-14.md · methodology-v1.md · pre-planning-list-clickup-2026-08-14.md · clarity-adoption-judgment-2026-08-14.md · 00-identity/offers.md · 02-pipeline/followup-cadence.md · engagements.json. Regenerate with python3 06-delivery/od/build-map.py — never hand-edit the HTML. Nothing here sends anything; Tier 3 stands.",
+  "sources_line": "Generated from: engagement-runbook-2026-08-14.md · methodology-v1.md · the ClickUp pre-planning list · the adoption-judgment brief-2026-08-14.md · 00-identity/the pricing rules · 02-pipeline/the follow-up cadence · engagements.json. Regenerate with python3 06-delivery/od/build-map.py — never hand-edit the HTML. Nothing here sends anything; Tier 3 stands.",
   "stages": [
     {
       "id": 1,
@@ -32,11 +32,11 @@
           "have": [
             [
               "ok",
-              "Entry criteria — 5 tests (methodology §1.2 · aakalan.md)"
+              "Entry criteria — 5 tests"
             ],
             [
               "ok",
-              "Lead signals (followup-cadence.md)"
+              "Lead signals"
             ],
             [
               "ok",
@@ -44,7 +44,7 @@
             ],
             [
               "ok",
-              "prospects.csv row created before any outreach"
+              "A pipeline record created before any outreach"
             ],
             [
               "ok",
@@ -75,7 +75,7 @@
               "a": "A signal only. Run the fit-check. The 26-July batch of 8 was sourced from one grant announcement and archived unsent; signal-only sourcing is the recorded failure mode."
             }
           ],
-          "src": "engagement-runbook Step 0 · aakalan.md Phase A"
+          "src": "Step 0"
         },
         {
           "n": "1",
@@ -121,10 +121,10 @@
           "qa": [
             {
               "q": "Can I mention the pilot rate to get attention?",
-              "a": "Never. Price never appears in the first email (offers.md). Sequence: conversation → scope → number."
+              "a": "Never. Price never appears in the first email (the pricing rules). Sequence: conversation → scope → number."
             }
           ],
-          "src": "engagement-runbook Step 1 · voice.md outreach rules"
+          "src": "Step 1 · the outreach writing rules"
         },
         {
           "n": "2",
@@ -134,7 +134,7 @@
           "have": [
             [
               "ok",
-              "Cadence: T2 day 5 LinkedIn DM · T3 day 12 pure value · T4 day 20 soft close (anusaran agent)"
+              "Cadence: T2 day 5 LinkedIn DM · T3 day 12 pure value · T4 day 20 soft close "
             ],
             [
               "ok",
@@ -172,7 +172,7 @@
               "a": "No. After T4 the prospect moves to nurture. No-reply is the default (rule 5); pipeline hygiene beats clever persistence."
             }
           ],
-          "src": "engagement-runbook Step 2 · followup-cadence.md"
+          "src": "Step 2 · the follow-up cadence"
         },
         {
           "n": "3",
@@ -204,7 +204,7 @@
               "a": "No — before the call it is a brochure. Its moment is within 24 hours AFTER the call, when it answers “what happens next”."
             }
           ],
-          "src": "engagement-runbook Step 3"
+          "src": "Step 3"
         }
       ]
     },
@@ -286,7 +286,7 @@
               "a": "“I price by scope, not by hour — you'll have a number in the proposal within 48 hours of this call, tied to exactly what we agree here.” Never improvise a figure live."
             }
           ],
-          "src": "engagement-runbook Step 4 · methodology §1.3–1.4 · ClickUp Pre-Planning List"
+          "src": "Step 4 · methodology §1.3–1.4 · ClickUp Pre-Planning List"
         },
         {
           "n": "5",
@@ -324,10 +324,10 @@
           "qa": [
             {
               "q": "They ask for a discount on the pilot rate?",
-              "a": "Scope down, not price down (offers.md). Remove a module and keep the number honest — a discount at the door anchors permanently and NGO directors talk to each other."
+              "a": "Scope down, not price down (the pricing rules). Remove a module and keep the number honest — a discount at the door anchors permanently and NGO directors talk to each other."
             }
           ],
-          "src": "engagement-runbook Step 5 · offers.md"
+          "src": "Step 5 · the pricing rules"
         },
         {
           "n": "6",
@@ -375,7 +375,7 @@
               "a": "The engagement has not started. Kickoff is gated on signature AND advance — that is what the 50% is for."
             }
           ],
-          "src": "engagement-runbook Step 6 · ClickUp item 4 · offers.md"
+          "src": "Step 6 · ClickUp item 4 · the pricing rules"
         }
       ]
     },
@@ -424,7 +424,7 @@
               "a": "e.g. days from field visit to report reaching the office · number of hands it passes through · how many of last quarter's reports the funder returned with queries. Two hours of asking, written down before you touch anything."
             }
           ],
-          "src": "engagement-runbook Step 7 · validation cycle Steps 3–4 · clarity-adoption-judgment"
+          "src": "Step 7 · validation cycle Steps 3–4 · the adoption-judgment brief"
         },
         {
           "n": "8",
@@ -438,7 +438,7 @@
             ],
             [
               "part",
-              "ngo-readiness-diagnostic.md — frames what to look at; NOT a baseline (self-scored, 10 min, pre-client)"
+              "the NGO readiness self-check — frames what to look at; NOT a baseline (self-scored, 10 min, pre-client)"
             ],
             [
               "miss",
@@ -493,7 +493,7 @@
               "a": "No. Staff access is an entry criterion (§1.2). If access fails now, the diagnosis is undeliverable — surface it as a contract issue, not a scheduling one."
             }
           ],
-          "src": "engagement-runbook Step 8 · clarity-adoption-judgment Part 1"
+          "src": "Step 8 · the adoption-judgment brief Part 1"
         },
         {
           "n": "9",
@@ -537,7 +537,7 @@
               "a": "Ask what evidence would change their mind, then go get it or drop it. A finding held against the client's will dies at implementation anyway — §4.2's adoption test starts in this room."
             }
           ],
-          "src": "engagement-runbook Step 9 · writing-craft.md §3, §5b"
+          "src": "Step 9 · the writing rules §3, §5b"
         },
         {
           "n": "10",
@@ -603,7 +603,7 @@
               "a": "Sort by forcing function in front of them: who asked for each, and what breaks externally if it isn't done. The list usually sorts itself; you never have to be the one saying no."
             }
           ],
-          "src": "methodology §Phase 4 (Clarity standing step) · clarity-adoption-judgment Parts 1–3"
+          "src": "methodology §Phase 4 (Clarity standing step) · the adoption-judgment brief Parts 1–3"
         },
         {
           "n": "11",
@@ -647,7 +647,7 @@
               "a": "Boundary rule §1.6: if the core problem is unclear, pause and diagnose. Scope-adds go into a note for engagement two — that is also how a pilot client becomes a full-rate client."
             }
           ],
-          "src": "engagement-runbook Step 11 · Case-Note-VSS-Balotra-2026"
+          "src": "Step 11 · Case-Note-VSS-Balotra-2026"
         },
         {
           "n": "12",
@@ -692,7 +692,7 @@
               "a": "Report it. §Step 8 of the validation cycle: record what failed and which assumptions were wrong — do not scale what is not adopted. An honest null in the lesson log beats an inflated case study everywhere it matters."
             }
           ],
-          "src": "engagement-runbook Step 12 · validation cycle"
+          "src": "Step 12 · validation cycle"
         },
         {
           "n": "13",
@@ -732,7 +732,7 @@
               "a": "At handover, same meeting, not months later. Draft the reference yourself and offer it for editing — a busy director approves a good draft and never writes one from scratch."
             }
           ],
-          "src": "engagement-runbook Step 13"
+          "src": "Step 13"
         }
       ]
     },
@@ -786,7 +786,7 @@
               "a": "The private version: what you believed about what they needed, what they would adopt, and how long it would take — against what happened. Clarity's note: by engagement four this file is worth more than the case studies."
             }
           ],
-          "src": "engagement-runbook Step 14 · methodology Layer 3"
+          "src": "Step 14 · methodology Layer 3"
         },
         {
           "n": "+90",
@@ -818,7 +818,7 @@
               "a": "Gold, twice over. It goes in the withdrawn-style lesson log (recorded failures do not repeat), and “what made it stop?” is a diagnostic conversation — which is Phase 1 of the next engagement."
             }
           ],
-          "src": "engagement-runbook Step 12 rule · clarity-adoption-judgment"
+          "src": "Step 12 rule · the adoption-judgment brief"
         }
       ]
     }
