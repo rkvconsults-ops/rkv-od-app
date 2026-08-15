@@ -48,6 +48,12 @@ Claude system produced the content; the app must carry it independently.
 M6 DONE 15 Aug: templates engine + doc viewer (copy/download/client
 substitution) + first 4 drafts (proposal, ToR, interview guide, capacity
 assessment — ALL AWAITING RAHUL REVIEW) + smart links row.
-NEXT: M7 remaining docs -> M7 all remaining docs ->
+M7 DONE 15 Aug: ALL 16 documents now written in-app, every step 0-14
+covered (call structure, holding reply, touch-3 value, engagement brief,
+doc checklist, confidentiality note, diagnostic report, feedback
+facilitation plan, action plan, handover pack, case-study request,
+lesson log + the M6 four). ALL ARE DRAFTS AWAITING RAHUL REVIEW -- each
+carries the red banner until he approves it and a session marks it final.
+NEXT: M8 issue-based playbooks -> M7 all remaining docs ->
 M8 issue playbooks wiring -> M9 integrations (per Rahul's pick) ->
 M10 language add-on architecture + full jargon purge + review pass.
