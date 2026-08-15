@@ -25,6 +25,7 @@ const Sync = (() => {
   const API = "https://api.github.com";
 
   let stateListeners = [];
+  const inFlight = new Set(); // ids being pushed right now -- pull must not touch them
   let currentState = "local"; // local | synced | pending | offline | error
   let lastError = null;   // the real GitHub error message, shown in Settings -- failures must be visible, not hidden behind the pill
 
@@ -264,9 +265,12 @@ const Sync = (() => {
     const queue = getQueue();
     let pulled = 0;
     for (const id of ids) {
-      if (queue.includes(id)) continue; // don't clobber an unsent local edit
+      if (queue.includes(id)) continue;   // don't clobber an unsent local edit
+      if (inFlight.has(id)) continue;     // don't clobber a push in progress
+      const local = Store.get(id);
       const f = await getFile(`clients/${id}.json`);
       if (f) {
+        if (local && local._sha === f.sha) continue; // unchanged -- no write, no render
         const remote = JSON.parse(f.content);
         remote._sha = f.sha;
         Store.saveLocalOnly(remote);
@@ -295,6 +299,7 @@ const Sync = (() => {
     if (!isConfigured()) return;
     if (!navigator.onLine) { enqueue(client.id); return; }
     setState("pending");
+    inFlight.add(client.id);
     try {
       const path = `clients/${client.id}.json`;
       const existing = await getFile(path);
@@ -315,6 +320,8 @@ const Sync = (() => {
       enqueue(client.id);
       setState("error");
       throw e;
+    } finally {
+      inFlight.delete(client.id);
     }
   }
 
