@@ -6,10 +6,11 @@
  * and the app runs fully on localStorage, with sync queued for reconnect.
  * The cache is refreshed on every successful network response.
  */
-const CACHE = "od-app-shell-v1";
+const CACHE = "od-app-shell-v2";
 const SHELL = [
   "./", "./index.html", "./styles.css", "./app.js", "./store.js",
   "./sync.js", "./engine.js", "./process-def.json", "./documents.json",
+  "./manifest.webmanifest", "./icon-192.png", "./icon-512.png", "./apple-touch-icon.png",
 ];
 
 self.addEventListener("install", (e) => {
