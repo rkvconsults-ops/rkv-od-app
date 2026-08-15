@@ -193,3 +193,24 @@ details.refstep .body{padding:4px 16px 14px;font-size:13px}
 .qa summary{padding:9px 13px;cursor:pointer;font-size:13.5px;font-weight:600;list-style:none;display:flex;gap:8px}
 .qa summary::before{content:"Q";color:var(--accent);font-weight:800}
 .qa .ans{padding:2px 13px 11px 33px;font-size:13px;color:#3a3f47}
+
+/* ---- M4 phone-first pass ---- */
+input, select, textarea{font-size:16px} /* below 16px iOS zooms the page on focus */
+.task input[type="checkbox"], .gatebox input[type="checkbox"]{width:20px;height:20px;flex-shrink:0}
+@media(max-width:560px){
+  .btn{padding:11px 16px;min-height:44px} /* real tap targets */
+  .modebtn{min-height:44px}
+  .docrow{flex-wrap:wrap;row-gap:2px}
+  .docrow a{margin-left:0 !important}
+  .spread{flex-wrap:wrap;gap:8px}
+  .kicker-row{justify-content:center}
+  .statgrid{grid-template-columns:1fr 1fr}
+  .client-card{padding:14px}
+  .toast{left:12px;right:12px;text-align:center}
+}
+
+/* client-mode: an outside organisation filling the intake sees a clean form,
+   not the practice's internal navigation, sync state or dashboards */
+body.client-mode nav{display:none}
+body.client-mode .sync-pill{display:none}
+body.client-mode .copyright{display:block}

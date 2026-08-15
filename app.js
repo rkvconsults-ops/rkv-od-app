@@ -60,9 +60,15 @@ const App = (() => {
   }
 
   function route() {
-    const h = location.hash.replace(/^#\/?/, "");
+    let h = location.hash.replace(/^#\/?/, "");
+    let query = {};
+    const qi = h.indexOf("?");
+    if (qi !== -1) {
+      new URLSearchParams(h.slice(qi + 1)).forEach((v, k) => { query[k] = v; });
+      h = h.slice(0, qi);
+    }
     const parts = h.split("/").filter(Boolean);
-    return { name: parts[0] || "home", arg: parts[1] };
+    return { name: parts[0] || "home", arg: parts[1], query };
   }
 
   function nav(path) { location.hash = path; }
@@ -74,10 +80,12 @@ const App = (() => {
     const activeLink = document.querySelector(`nav a[data-route="${r.name}"]`);
     if (activeLink) activeLink.classList.add("active");
     renderSyncPill();
+    document.body.classList.toggle("client-mode", r.name === "intake" && r.query.mode === "client");
 
     if (r.name === "home") return viewHome();
     if (r.name === "client") return viewClient(r.arg);
-    if (r.name === "intake") return viewIntake();
+    if (r.name === "intake") return viewIntake(r.query.mode === "client");
+    if (r.name === "import") return viewImport();
     if (r.name === "reference") return viewReference();
     if (r.name === "dashboard") return viewDashboard();
     if (r.name === "settings") return viewSettings();
@@ -103,7 +111,8 @@ const App = (() => {
     let html = `<div class="view">
       <div class="spread">
         <h2 class="vtitle">Clients</h2>
-        <button class="btn primary" onclick="App.nav('intake')">+ Add client</button>
+        <span><button class="btn" onclick="App.nav('import')">Import intake code</button>
+        <button class="btn primary" onclick="App.nav('intake')">+ Add client</button></span>
       </div>
       <div class="card sm" style="display:flex;justify-content:space-between;align-items:center">
         <span><b>${used} / 5</b> pilot slots used <span class="mut">&middot; ₹45,000 each, expires at slot 5</span></span>
@@ -326,19 +335,19 @@ const App = (() => {
   }
 
   // ---------------- INTAKE FORM ----------------
-  function viewIntake() {
+  function viewIntake(clientMode) {
     root.innerHTML = `<div class="view">
-      <h2 class="vtitle">Add a client &mdash; intake</h2>
-      <p class="sm mut">Fills the 7 discovery questions (methodology §1.3), your own ClickUp
-        pre-planning fields, and the baseline Clarity flagged as the highest-value habit to start.
-        Saving creates the client at Step 0.</p>
+      <h2 class="vtitle">${clientMode ? "Organisation intake form" : "Add a client &mdash; intake"}</h2>
+      <p class="sm mut">${clientMode
+        ? "Please answer what you can &mdash; skip anything unclear, everything can be discussed later. When you submit, you'll get a short code to send back on WhatsApp or email. <b>Nothing is uploaded anywhere</b>; the code is the data, and only the person you send it to can read it."
+        : "Fills the 7 discovery questions (methodology §1.3), your own ClickUp pre-planning fields, and the baseline Clarity flagged as the highest-value habit to start. Saving creates the client at Step 0."}</p>
 
       <fieldset><legend>Who</legend>
         <div class="formgrid">
           <div><label>Organisation *</label><input id="f_org" required></div>
           <div><label>Contact name</label><input id="f_contact"></div>
           <div><label>Contact title</label><input id="f_title"></div>
-          <div><label>Account / source code</label><input id="f_acct" placeholder="e.g. AKL-002"></div>
+          ${clientMode ? "" : `<div><label>Account / source code</label><input id="f_acct" placeholder="e.g. AKL-002"></div>`}
         </div>
       </fieldset>
 
@@ -369,23 +378,26 @@ const App = (() => {
         </div>
       </fieldset>
 
-      <fieldset><legend>Baseline &mdash; 3 countable things, before anything changes</legend>
+      ${clientMode ? "" : `<fieldset><legend>Baseline &mdash; 3 countable things, before anything changes</legend>
         <div class="formgrid">
           <div><label>Metric 1</label><input id="f_b1" placeholder="e.g. days from field visit to report"></div>
           <div><label>Metric 2</label><input id="f_b2"></div>
           <div><label>Metric 3</label><input id="f_b3"></div>
         </div>
-      </fieldset>
+      </fieldset>`}
 
       <fieldset><legend>Notes</legend>
         <textarea id="f_notes" rows="3"></textarea>
       </fieldset>
 
       <div class="form-actions">
-        <button class="btn" onclick="App.shareIntakeLink()">Share client-fillable link</button>
-        <button class="btn" onclick="App.nav('home')">Cancel</button>
-        <button class="btn primary" onclick="App.saveIntake()">Save client</button>
+        ${clientMode
+          ? `<button class="btn primary" onclick="App.makeIntakeCode()">Get my code to send back</button>`
+          : `<button class="btn" onclick="App.shareIntakeLink()">Share client-fillable link</button>
+             <button class="btn" onclick="App.nav('home')">Cancel</button>
+             <button class="btn primary" onclick="App.saveIntake()">Save client</button>`}
       </div>
+      <div id="codeout"></div>
     </div>`;
   }
 
@@ -426,8 +438,77 @@ const App = (() => {
 
   function shareIntakeLink() {
     const url = location.origin + location.pathname + "#/intake?mode=client";
-    navigator.clipboard && navigator.clipboard.writeText(url);
-    toast("Link copied. Client-facing intake + import-by-code lands in M4.");
+    if (navigator.clipboard) navigator.clipboard.writeText(url);
+    toast("Link copied -- send it to the client on WhatsApp or email. They fill the form and send you back a code; import it from the Clients page.");
+  }
+
+  // ---- intake codes: UTF-8 safe base64url. The code IS the data -- nothing
+  // is uploaded anywhere; a client without a token has no write path, so the
+  // data travels back through whatever channel they already use (WhatsApp).
+  function encodeIntake(obj) {
+    const bytes = new TextEncoder().encode(JSON.stringify(obj));
+    let bin = "";
+    bytes.forEach((b) => { bin += String.fromCharCode(b); });
+    return "ODI1." + btoa(bin).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+  }
+  function decodeIntake(code) {
+    code = code.trim();
+    if (!code.startsWith("ODI1.")) throw new Error("Not an intake code (should start with ODI1.)");
+    let b64 = code.slice(5).replace(/-/g, "+").replace(/_/g, "/");
+    while (b64.length % 4) b64 += "=";
+    const bin = atob(b64);
+    const bytes = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+    return JSON.parse(new TextDecoder().decode(bytes));
+  }
+
+  function makeIntakeCode() {
+    const intake = readIntake();
+    if (!intake.org.trim()) { toast("Organisation name is required"); return; }
+    const code = encodeIntake(intake);
+    const out = document.getElementById("codeout");
+    out.innerHTML = `<div class="card" style="margin-top:14px">
+      <b>Done. Send this whole code back:</b>
+      <textarea readonly rows="5" style="margin-top:8px;font-family:monospace;font-size:12px" onclick="this.select()">${esc(code)}</textarea>
+      <div class="row" style="margin-top:8px">
+        <button class="btn primary" onclick="navigator.clipboard.writeText(this.parentElement.previousElementSibling.value).then(()=>App.toast('Copied'))">Copy code</button>
+        <span class="xs mut">Paste it into WhatsApp or email, send, done.</span>
+      </div>
+    </div>`;
+    out.scrollIntoView({ behavior: "smooth" });
+  }
+
+  function viewImport() {
+    root.innerHTML = `<div class="view">
+      <h2 class="vtitle">Import a client's intake code</h2>
+      <p class="sm mut">Paste the ODI1. code the client sent back. It becomes a new client record,
+        with every answer they gave in place.</p>
+      <textarea id="importcode" rows="6" style="font-family:monospace;font-size:12px" placeholder="ODI1...."></textarea>
+      <div class="form-actions">
+        <button class="btn" onclick="App.nav('home')">Cancel</button>
+        <button class="btn primary" onclick="App.doImportCode()">Import</button>
+      </div>
+    </div>`;
+  }
+
+  function doImportCode() {
+    const raw = (document.getElementById("importcode") || {}).value || "";
+    let intake;
+    try { intake = decodeIntake(raw); }
+    catch (e) { toast("Could not read that code: " + e.message); return; }
+    if (!intake.org || !intake.org.trim()) { toast("Code has no organisation name"); return; }
+    const id = Store.nextId();
+    const c = {
+      id, org: intake.org, contact: intake.contact || "", acct: intake.acct || null,
+      status: "active", pilotSlot: null, currentStep: "0",
+      stepState: { "0": { state: "doing", date: Engine.todayISO() } },
+      tasks: {}, clarityConfirmed: {},
+      intake, waitingOnClient: [], waitingOnUs: [],
+      log: [{ date: Engine.todayISO(), event: "Client created from an intake code they filled themselves" }],
+    };
+    Store.save(c);
+    toast("Imported " + intake.org);
+    nav("client/" + id);
   }
 
   // ---------------- REFERENCE (the old static map, now a view) ----------------
@@ -701,7 +782,7 @@ const App = (() => {
 
   return {
     boot, nav, render, toast,
-    saveIntake, shareIntakeLink, exportBackup, importBackup,
+    saveIntake, shareIntakeLink, makeIntakeCode, doImportCode, exportBackup, importBackup,
     toggleTask, toggleGate, doAdvance, addWait, removeWait, confirmDelete,
     testConnection, saveSync, disconnectSync, syncNow,
   };

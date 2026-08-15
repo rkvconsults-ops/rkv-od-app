@@ -36,6 +36,11 @@
   // stay synchronous when rendering the client-detail documents panel.
   fetch("documents.json").then(r => r.json()).then(d => { window.DOCS = d; App.boot(); })
     .catch(() => { window.DOCS = { byStep: {} }; App.boot(); });
+  // Offline shell -- lets the app open with no network (field use). Sync
+  // stays queued until connectivity returns; nothing is lost either way.
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("sw.js").catch(() => {});
+  }
 </script>
 </body>
 </html>
