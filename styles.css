@@ -75,7 +75,13 @@ nav a:hover:not(.active){border-color:var(--accent);color:var(--accent)}
 .empty{padding:36px 20px;text-align:center;color:var(--muted);font-size:14px}
 .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);
   color:#fff;padding:11px 20px;border-radius:10px;font-size:13.5px;box-shadow:var(--shadow);
-  z-index:99;animation:vin .2s ease}
+  z-index:99;animation:toastin .2s ease}
+/* The toast's own entry animation. It must carry translateX(-50%) in every
+   keyframe: transform is a single property, so an animation that omits it
+   (like the shared view animation did) replaces the centering for the
+   animation's duration -- the pop-right-then-jump-centre glitch. */
+@keyframes toastin{from{opacity:0;transform:translateX(-50%) translateY(8px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+@keyframes toastin-mobile{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 h2.vtitle{font-family:var(--serif);font-size:21px;font-weight:600;margin:4px 0 14px}
 .section-label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);
   font-weight:700;margin:18px 0 8px}
@@ -206,7 +212,7 @@ input, select, textarea{font-size:16px} /* below 16px iOS zooms the page on focu
   .kicker-row{justify-content:center}
   .statgrid{grid-template-columns:1fr 1fr}
   .client-card{padding:14px}
-  .toast{left:12px;right:12px;transform:none;text-align:center}
+  .toast{left:12px;right:12px;transform:none;text-align:center;animation:toastin-mobile .2s ease}
 }
 
 /* client-mode: an outside organisation filling the intake sees a clean form,
