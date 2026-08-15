@@ -689,10 +689,13 @@ const App = (() => {
   function confirmDelete(clientId) {
     const c = Store.get(clientId);
     if (!c) return;
-    if (confirm(`Delete ${c.org}? This cannot be undone in this browser (export a backup first if unsure).`)) {
-      Store.remove(clientId);
-      toast("Deleted");
-      nav("home");
+    if (confirm(`Delete ${c.org}? This removes it here AND from GitHub (every device). The record stays recoverable in the data repo's git history.`)) {
+      Sync.deleteClient(clientId).then((r) => {
+        if (r.remote) toast("Deleted everywhere");
+        else if (r.queued) toast("Deleted here; GitHub delete queued" + (r.error ? " (" + r.error + ")" : ""));
+        else toast("Deleted (local only -- sync not configured)");
+        nav("home");
+      });
     }
   }
 

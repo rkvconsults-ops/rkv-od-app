@@ -21,6 +21,7 @@
 const Sync = (() => {
   const CFG_KEY = "od_sync_cfg_v1";
   const QUEUE_KEY = "od_sync_queue_v1";
+  const DELQUEUE_KEY = "od_sync_delqueue_v1";
   const API = "https://api.github.com";
 
   let stateListeners = [];
@@ -68,6 +69,11 @@ const Sync = (() => {
   function dequeue(clientId) {
     setQueue(getQueue().filter((id) => id !== clientId));
   }
+  function getDelQueue() {
+    try { return JSON.parse(localStorage.getItem(DELQUEUE_KEY) || "[]"); }
+    catch (e) { return []; }
+  }
+  function setDelQueue(q) { localStorage.setItem(DELQUEUE_KEY, JSON.stringify(q)); }
 
   // ---------------- UTF-8 safe base64 (org names may contain Hindi etc.) --
   function b64Encode(str) {
@@ -161,6 +167,64 @@ const Sync = (() => {
     throw new Error("index.json kept conflicting after 4 attempts");
   }
 
+  // Merge-safe index removal -- same conflict-loop discipline as updateIndex.
+  async function removeFromIndex(id) {
+    for (let attempt = 0; attempt < 4; attempt++) {
+      const idxFile = await getFile("index.json");
+      if (!idxFile) return;
+      const ids = (JSON.parse(idxFile.content).ids || []).filter((x) => x !== id);
+      if (JSON.parse(idxFile.content).ids.length === ids.length) return; // already gone
+      const res = await putFileOnce("index.json", JSON.stringify({ ids }, null, 2),
+        idxFile.sha, `Remove ${id} from index`);
+      if (res.ok) return;
+      if (res.status !== 409 && res.status !== 422) {
+        throw new Error(`GitHub write failed (${res.status}): ${await safeMsg(res)}`);
+      }
+    }
+    throw new Error("index.json kept conflicting after 4 attempts");
+  }
+
+  // Deletes a client from GitHub: the file, then the index entry. Queued
+  // when offline; drained by flushQueue like pushes are.
+  async function deleteRemote(id) {
+    const cfg = getConfig();
+    const f = await getFile(`clients/${id}.json`);
+    if (f) {
+      const res = await fetch(`${API}/repos/${cfg.owner}/${cfg.repo}/contents/clients/${id}.json`, {
+        method: "DELETE", headers: headers(cfg),
+        body: JSON.stringify({ message: `Delete ${id}`, sha: f.sha }),
+      });
+      if (!res.ok) throw new Error(`GitHub delete failed (${res.status}): ${await safeMsg(res)}`);
+    }
+    await removeFromIndex(id);
+  }
+
+  // The one entry point the UI calls. Local removal is immediate either
+  // way; the remote side happens now (online+configured) or is queued.
+  async function deleteClient(id) {
+    Store.remove(id);
+    dequeue(id); // an unsent push for a deleted client must not resurrect it
+    if (!isConfigured()) return { remote: false };
+    if (!navigator.onLine) {
+      const q = getDelQueue();
+      if (!q.includes(id)) { q.push(id); setDelQueue(q); }
+      setState("offline");
+      return { remote: false, queued: true };
+    }
+    setState("pending");
+    try {
+      await deleteRemote(id);
+      setState(getQueue().length || getDelQueue().length ? "pending" : "synced");
+      return { remote: true };
+    } catch (e) {
+      lastError = `delete ${id}: ${e.message}`;
+      const q = getDelQueue();
+      if (!q.includes(id)) { q.push(id); setDelQueue(q); }
+      setState("error");
+      return { remote: false, queued: true, error: e.message };
+    }
+  }
+
   async function safeMsg(res) {
     try { return (await res.json()).message || res.statusText; }
     catch (e) { return res.statusText; }
@@ -209,8 +273,19 @@ const Sync = (() => {
         pulled++;
       }
     }
-    setState(getQueue().length ? "pending" : "synced");
-    return { pulled };
+    // Deletion propagation: a client that WAS synced (has _sha) but is no
+    // longer in the remote index was deleted on another device -- mirror
+    // that here. Never-synced locals and queued items are left alone.
+    const delQ = getDelQueue();
+    let removed = 0;
+    Store.all().forEach((c) => {
+      if (c._sha && !ids.includes(c.id) && !queue.includes(c.id) && !delQ.includes(c.id)) {
+        Store.remove(c.id);
+        removed++;
+      }
+    });
+    setState(getQueue().length || getDelQueue().length ? "pending" : "synced");
+    return { pulled, removed };
   }
 
   // Push one client's current local state out. Updates index.json only
@@ -264,7 +339,13 @@ const Sync = (() => {
       try { await pushClient(client); }
       catch (e) { break; }
     }
-    setState(getQueue().length ? "error" : "synced");
+    for (const id of getDelQueue()) {
+      try {
+        await deleteRemote(id);
+        setDelQueue(getDelQueue().filter((x) => x !== id));
+      } catch (e) { lastError = `delete ${id}: ${e.message}`; break; }
+    }
+    setState(getQueue().length || getDelQueue().length ? "error" : "synced");
   }
 
   window.addEventListener("online", () => { setState(getQueue().length ? "pending" : "synced"); flushQueue(); });
@@ -274,6 +355,6 @@ const Sync = (() => {
     getConfig, setConfig, clearConfig, isConfigured,
     getState, onStateChange, getQueue,
     getLastError: () => lastError,
-    testConnection, pullAll, pushClient, flushQueue, enqueue,
+    testConnection, pullAll, pushClient, flushQueue, enqueue, deleteClient,
   };
 })();
