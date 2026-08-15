@@ -22,8 +22,10 @@ Claude system produced the content; the app must carry it independently.
    which playbook their steps surface.
 3. LANGUAGE: English primary. Architecture supports per-client language
    add-ons per document (Hindi/Bengali/Gujarati...) added later on demand.
-4. INTEGRATIONS: pending Rahul's pick after the policy/risk briefing
-   (smart links vs full API vs links-now-API-later). Gmail full API advised
+4. INTEGRATIONS: LOCKED 15 Aug — smart links now, APIs later. Gmail
+   compose + Google Calendar template links + Calendly (URL set in
+   Settings) SHIPPED in M6. ClickUp relay (Cloudflare Worker) is the
+   designated later project if practice proves the need. Gmail full API advised
    against (Google restricted-scope verification; 7-day test tokens).
    ClickUp full API requires a Cloudflare Worker relay (CORS) — possible,
    own-account, separate project if chosen.
@@ -43,6 +45,9 @@ Claude system produced the content; the app must carry it independently.
   auto-fills next number, editable.
 
 ## Build order for v2
-M6 templates engine + first 4 critical docs -> M7 all remaining docs ->
+M6 DONE 15 Aug: templates engine + doc viewer (copy/download/client
+substitution) + first 4 drafts (proposal, ToR, interview guide, capacity
+assessment — ALL AWAITING RAHUL REVIEW) + smart links row.
+NEXT: M7 remaining docs -> M7 all remaining docs ->
 M8 issue playbooks wiring -> M9 integrations (per Rahul's pick) ->
 M10 language add-on architecture + full jargon purge + review pass.
