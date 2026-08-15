@@ -115,7 +115,7 @@
      "rules": [
       {
        "t": "Hypothesis, not diagnosis",
-       "d": "The email invites a conversation about what might be true. If they reply “that area is going fine”, that is a real answer, not a failed pitch — the QUEST draft is the model."
+       "d": "The email invites a conversation about what might be true. If they reply “that area is going fine”, that is a real answer, not a failed pitch — the hypothesis-testing email is the model."
       }
      ],
      "qa": [
@@ -384,7 +384,7 @@
    "title": "Delivery",
    "range": "The 8-phase cycle · Kickoff → Handover",
    "desc": "Diagnosis first, always. One phase is fully proven (Implementation — VSS). One carries the CLARITY gate.",
-   "intro": "the methodology: every engagement starts with diagnosis, not solution design. Phase 5 is the one complete stage — six adopted policies at VSS prove it. Phase 2 is the weakest and most exposed: a scored capacity baseline is promised in writing and cannot yet be produced.",
+   "intro": "the methodology: every engagement starts with diagnosis, not solution design. Phase 5 is the one complete stage — six adopted policies at a delivered engagement prove it. Phase 2 is the weakest and most exposed: a scored capacity baseline is promised in writing and cannot yet be produced.",
    "steps": [
     {
      "n": "7",
@@ -414,7 +414,7 @@
       ],
       [
        "info",
-       "BASELINE: three countable things, same conversation, no instrument needed — how long X takes now · how many people touch it · where it stalls. VSS never got one; a case study with no baseline is an assertion (Clarity, highest-value change)"
+       "BASELINE: three countable things, same conversation, no instrument needed — how long X takes now · how many people touch it · where it stalls. one delivered engagement never got one -- and a case study with no baseline is an assertion, not proof (Clarity, highest-value change)"
       ]
      ],
      "rules": [],
@@ -586,7 +586,7 @@
       },
       {
        "t": "Which meeting does this live in?",
-       "d": "A design constraint, not a closing question. Any new practice lands on an existing recurring slot or it has no heartbeat — the one mechanism with real VSS evidence, and it writes most of the handover pack for free."
+       "d": "A design constraint, not a closing question. Any new practice lands on an existing recurring slot or it has no heartbeat — the one mechanism with real delivered-engagement evidence, and it writes most of the handover pack for free."
       },
       {
        "t": "Forcing function first",
