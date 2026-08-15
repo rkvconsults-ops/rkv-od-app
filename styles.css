@@ -225,3 +225,7 @@ body.client-mode .copyright{display:block}
 
 /* in-app document viewer */
 .docbody{white-space:pre-wrap;font-family:ui-monospace,Menlo,monospace;font-size:12.5px;line-height:1.6;margin:0}
+
+/* pre-paint client-mode (html-level, set before CSS loads) -- no flash of
+   internal chrome when a client opens their intake link */
+html.client-mode nav, html.client-mode .sync-pill, html.client-mode .gearlink{display:none}
