@@ -25,6 +25,7 @@ const Sync = (() => {
 
   let stateListeners = [];
   let currentState = "local"; // local | synced | pending | offline | error
+  let lastError = null;   // the real GitHub error message, shown in Settings -- failures must be visible, not hidden behind the pill
 
   function onStateChange(fn) { stateListeners.push(fn); }
   function setState(s) {
@@ -206,9 +207,11 @@ const Sync = (() => {
           `Add ${client.id} to index`);
       }
       dequeue(client.id);
+      lastError = null;
       setState(getQueue().length ? "pending" : "synced");
     } catch (e) {
       console.error("Push failed", e);
+      lastError = `${client.org} (${client.id}): ${e.message}`;
       enqueue(client.id);
       setState("error");
       throw e;
@@ -220,6 +223,15 @@ const Sync = (() => {
   // than being abandoned.
   async function flushQueue() {
     if (!isConfigured() || !navigator.onLine) return;
+    // Reconciliation, not just queue-draining. The bug this fixes, found
+    // live on 15 Aug: a client created BEFORE sync was configured was never
+    // pushed and never queued (correct at the time -- the app was
+    // local-only), and nothing ever went back for it once a token was
+    // saved. It sat stranded in localStorage while the pill said "Synced".
+    // So: every local client that has never reached GitHub (no _sha from a
+    // successful push) gets queued here, every time. Makes "Sync now" and
+    // the post-configure flush genuinely mean "everything local is remote".
+    Store.all().forEach((c) => { if (!c._sha) enqueue(c.id); });
     const queue = getQueue();
     for (const id of queue) {
       const client = Store.get(id);
@@ -227,6 +239,7 @@ const Sync = (() => {
       try { await pushClient(client); }
       catch (e) { break; }
     }
+    setState(getQueue().length ? "error" : "synced");
   }
 
   window.addEventListener("online", () => { setState(getQueue().length ? "pending" : "synced"); flushQueue(); });
@@ -235,6 +248,7 @@ const Sync = (() => {
   return {
     getConfig, setConfig, clearConfig, isConfigured,
     getState, onStateChange, getQueue,
+    getLastError: () => lastError,
     testConnection, pullAll, pushClient, flushQueue, enqueue,
   };
 })();

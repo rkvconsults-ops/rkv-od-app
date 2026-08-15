@@ -19,6 +19,8 @@ const App = (() => {
       if (Sync.isConfigured()) {
         Sync.pullAll()
           .then((r) => { if (r.pulled) { toast(`Synced ${r.pulled} client(s) from GitHub`); render(); } })
+          .then(() => Sync.flushQueue())   // push anything local that never reached GitHub
+          .then(() => renderSyncPill())
           .catch((e) => toast("Sync on load failed: " + e.message));
       }
     }).catch((e) => {
@@ -492,7 +494,8 @@ const App = (() => {
         <div class="row" style="margin-top:14px;border-top:1px solid var(--line);padding-top:14px">
           <button class="btn" onclick="App.syncNow()">Sync now</button>
           <span class="sm mut">${Sync.getQueue().length ? Sync.getQueue().length + " client(s) waiting to push" : "Nothing queued"}</span>
-        </div>` : ""}
+        </div>
+        ${Sync.getLastError() ? `<div class="sm" style="margin-top:8px;color:var(--miss)"><b>Last sync error:</b> ${esc(Sync.getLastError())}</div>` : ""}` : ""}
       </div>
 
       <div class="card">
@@ -532,6 +535,10 @@ const App = (() => {
     toast("Saved. Syncing now…");
     Sync.pullAll().then((r) => {
       toast(`Connected. Pulled ${r.pulled} client(s).`);
+      return Sync.flushQueue();          // push anything local that never reached GitHub
+    }).then(() => {
+      const err = Sync.getLastError();
+      if (err) toast("Push problem: " + err);
       render();
     }).catch((e) => toast("Saved, but the first sync failed: " + e.message));
     render();
@@ -546,7 +553,9 @@ const App = (() => {
   function syncNow() {
     toast("Syncing…");
     Sync.flushQueue().then(() => Sync.pullAll()).then((r) => {
-      toast(`Synced. Pulled ${r.pulled} client(s).`);
+      const err = Sync.getLastError();
+      if (err) toast("Sync finished with a problem: " + err);
+      else toast(`Synced. Pulled ${r.pulled} client(s).`);
       render();
     }).catch((e) => toast("Sync failed: " + e.message));
   }
