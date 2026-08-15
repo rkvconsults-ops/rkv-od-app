@@ -99,6 +99,7 @@ const App = (() => {
     else if (r.name === "client") viewClient(r.arg);
     else if (r.name === "intake") viewIntake(r.query.mode === "client");
     else if (r.name === "import") viewImport();
+    else if (r.name === "doc") viewDoc(r.arg, r.query.client);
     else if (r.name === "reference") viewReference();
     else if (r.name === "dashboard") viewDashboard();
     else if (r.name === "settings") viewSettings();
@@ -209,9 +210,11 @@ const App = (() => {
         </div>
       </div>
 
+      ${smartLinksHTML(c)}
+
       ${intakeHTML(c)}
 
-      ${documentsHTML(step)}
+      ${documentsHTML(step, c)}
 
       <div class="section-label">Waiting on client</div>
       ${waitListHTML(c, "waitingOnClient")}
@@ -280,15 +283,19 @@ const App = (() => {
     </div>`;
   }
 
-  function documentsHTML(step) {
+  function documentsHTML(step, client) {
     const docs = (window.DOCS && window.DOCS.byStep && window.DOCS.byStep[step.n]) || [];
     if (!docs.length) return "";
     let html = `<div class="section-label">Documents &amp; package for this step</div><div class="card">`;
     docs.forEach((d) => {
+      const badge = d.status === "exists" ? ["exists","have it"] : d.tpl ? ["exists","draft in app"] : ["placeholder","gap"];
+      const openLink = d.tpl
+        ? `<a href="#/doc/${d.tpl}${client ? "?client=" + client.id : ""}" class="xs" style="margin-left:auto">open</a>`
+        : d.url ? `<a href="${esc(d.url)}" class="xs" style="margin-left:auto" target="_blank" rel="noopener">open</a>` : "";
       html += `<div class="docrow">
-        <span class="st ${d.status === "exists" ? "exists" : "placeholder"}">${d.status === "exists" ? "have it" : "gap"}</span>
+        <span class="st ${badge[0]}">${badge[1]}</span>
         <span>${esc(d.name)}</span>
-        ${d.url ? `<a href="${esc(d.url)}" class="xs" style="margin-left:auto" target="_blank" rel="noopener">open</a>` : ""}
+        ${openLink}
       </div>`;
       const sub = [d.location ? "Where: " + d.location : null, d.note || null].filter(Boolean).join(" · ");
       if (sub) html += `<div class="xs mut" style="padding-left:64px;margin-top:-3px;margin-bottom:6px">${esc(sub)}</div>`;
@@ -542,6 +549,59 @@ const App = (() => {
     out.scrollIntoView({ behavior: "smooth" });
   }
 
+  // In-app document viewer: shows a template with the client's details
+  // filled in, ready to copy or download. The document lives IN the app.
+  function viewDoc(id, clientId) {
+    const t = window.TPL && window.TPL.templates && window.TPL.templates[id];
+    if (!t) { root.innerHTML = `<div class="empty">Document not found.</div>`; return; }
+    const c = clientId ? Store.get(clientId) : null;
+    let body = t.body
+      .replace(/{{ORG}}/g, c ? c.org : "[ORGANISATION]")
+      .replace(/{{CONTACT}}/g, c && c.contact ? c.contact : "[CONTACT NAME]")
+      .replace(/{{DATE}}/g, new Date().toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" }));
+    root.innerHTML = `<div class="view">
+      <div class="spread">
+        <div><h2 class="vtitle">${esc(t.title)}</h2>
+          ${c ? `<div class="sm mut">Prepared for ${esc(c.org)}</div>` : ""}</div>
+        <button class="btn small" onclick="history.back()">&larr; Back</button>
+      </div>
+      ${t.status === "draft" ? `<div class="rulebox"><b>DRAFT.</b> Written by the system, not yet reviewed by you. Read it fully and edit before it ever reaches a client. Once you approve it, tell the next session to mark it final.</div>` : ""}
+      <div class="card"><pre class="docbody" id="docbody">${esc(body)}</pre></div>
+      <div class="row" style="margin-top:12px">
+        <button class="btn primary" onclick="navigator.clipboard.writeText(document.getElementById('docbody').textContent).then(()=>App.toast('Copied -- paste into Gmail, Word, anywhere'))">Copy full text</button>
+        <button class="btn" onclick="App.downloadDoc('${esc(id)}')">Download (.txt)</button>
+      </div>
+    </div>`;
+  }
+
+  function downloadDoc(id) {
+    const el = document.getElementById("docbody");
+    if (!el) return;
+    const blob = new Blob([el.textContent], { type: "text/plain;charset=utf-8" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = id + "-" + Engine.todayISO() + ".txt";
+    a.click();
+  }
+
+  // Smart links: one-tap actions that need no login and no API --
+  // stable URL contracts only (the integration decision of 15 Aug).
+  function smartLinksHTML(c) {
+    const subj = encodeURIComponent("Regarding our OD engagement -- " + c.org);
+    const body = encodeURIComponent("Dear " + (c.contact || "") + ",\n\n");
+    const gmail = "https://mail.google.com/mail/?view=cm&fs=1&su=" + subj + "&body=" + body;
+    const gcalText = encodeURIComponent("Follow up: " + c.org + " (OD)");
+    const gcal = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=" + gcalText;
+    const calendly = localStorage.getItem("od_calendly_url") || "";
+    return `<div class="section-label">Quick actions</div>
+      <div class="row" style="flex-wrap:wrap">
+        <a class="btn small" href="${gmail}" target="_blank" rel="noopener">&#9993; Draft email in Gmail</a>
+        <a class="btn small" href="${gcal}" target="_blank" rel="noopener">&#128197; Add follow-up to Calendar</a>
+        ${calendly ? `<a class="btn small" href="${esc(calendly)}" target="_blank" rel="noopener">&#128337; Open Calendly</a>`
+                   : `<a class="btn small" href="#/settings">&#128337; Set Calendly link&hellip;</a>`}
+      </div>`;
+  }
+
   function viewImport() {
     root.innerHTML = `<div class="view">
       <h2 class="vtitle">Import a client's intake code</h2>
@@ -698,6 +758,13 @@ const App = (() => {
       </div>
 
       <div class="card">
+        <b>Quick actions</b>
+        <p class="sm mut">Your Calendly link, used by the "Open Calendly" button on every client.</p>
+        <input id="s_calendly" placeholder="https://calendly.com/your-link" value="${esc(localStorage.getItem("od_calendly_url") || "")}">
+        <div class="row" style="margin-top:8px"><button class="btn" onclick="localStorage.setItem('od_calendly_url',(document.getElementById('s_calendly').value||'').trim());App.toast('Saved')">Save link</button></div>
+      </div>
+
+      <div class="card">
         <b>Backup</b>
         <p class="sm mut">A local export, independent of GitHub sync. Worth doing before any big change.</p>
         <div class="row" style="margin-top:10px">
@@ -847,7 +914,7 @@ const App = (() => {
   return {
     boot, nav, render, toast,
     saveIntake, shareIntakeLink, makeIntakeCode, doImportCode, exportBackup, importBackup,
-    saveDraft,
+    saveDraft, downloadDoc,
     toggleTask, toggleGate, doAdvance, addWait, removeWait, confirmDelete,
     testConnection, saveSync, disconnectSync, syncNow,
   };
