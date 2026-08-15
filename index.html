@@ -39,8 +39,10 @@
 <script>
   // documents.json loaded onto window.DOCS before App boots, so app.js can
   // stay synchronous when rendering the client-detail documents panel.
-  fetch("documents.json").then(r => r.json()).then(d => { window.DOCS = d; App.boot(); })
-    .catch(() => { window.DOCS = { byStep: {} }; App.boot(); });
+  fetch("documents.json").then(r => r.json()).then(d => { window.DOCS = d;
+    return fetch("templates.json").then(r => r.json()); })
+    .then(t => { window.TPL = t; App.boot(); })
+    .catch(() => { window.DOCS = window.DOCS || { byStep: {} }; window.TPL = { templates: {} }; App.boot(); });
   // Offline shell -- lets the app open with no network (field use). Sync
   // stays queued until connectivity returns; nothing is lost either way.
   if ("serviceWorker" in navigator) {
