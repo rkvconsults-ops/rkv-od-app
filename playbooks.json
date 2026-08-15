@@ -1,0 +1,204 @@
+{
+ "issues": {
+  "Mis-Communication": {
+   "summary": "Information exists but does not travel intact. The fix is almost never 'communicate more' -- it is fewer, clearer channels with someone standing at each handover.",
+   "diagnoseFirst": [
+    "Map one real message's journey: field incident -> who heard first -> who wrote what -> who never found out",
+    "List every channel in use (WhatsApp groups, meetings, registers, calls) and what each is actually FOR -- overlap is the disease",
+    "Find where messages die: the person who receives but does not pass on (usually overload, not intent)",
+    "Check language switches: field speaks Hindi, reports written in English -- meaning leaks at every translation"
+   ],
+   "rootCauses": [
+    "Too many channels, none owned",
+    "No agreed 'this goes there' rule",
+    "Handovers with nobody at the receiving end",
+    "Language/format switches mid-journey"
+   ],
+   "interventions": [
+    {
+     "n": "One-channel rule",
+     "d": "Each message type gets ONE home (incidents -> this group; decisions -> this register). Kill duplicate channels rather than adding new ones."
+    },
+    {
+     "n": "The last-look owner",
+     "d": "Every handover gets a named receiver who confirms receipt -- the missing task, not a missing person."
+    },
+    {
+     "n": "Meeting repair",
+     "d": "The existing recurring meeting gets a fixed 10-minute 'what moved, what stalled' slot -- land the new habit on the meeting that already exists."
+    }
+   ],
+   "keyDocs": [
+    "interview-guide",
+    "diagnostic-report",
+    "action-plan"
+   ],
+   "indicators": [
+    "Days for a field incident to reach the office (count 3 real cases)",
+    "Messages in the main group per day vs decisions recorded per week",
+    "Staff who can name where a given message type belongs (ask 5)"
+   ],
+   "watchFor": "If they ask for a communication POLICY document, resist -- a policy nobody reads is how this issue got here. Build the habit first, write it down after it works."
+  },
+  "Project In-efficiency": {
+   "summary": "Work happens but slowly, with rework. Look for the invisible queue -- where tasks wait, not where people are slow.",
+   "diagnoseFirst": [
+    "Pick one recent project and timeline it backwards: where did days disappear? Waiting beats working as the usual thief",
+    "Count the hands one deliverable passes through and what each hand adds",
+    "Find rework: what gets done twice, and why (unclear brief? late feedback? format rejected?)",
+    "Check the approval bottleneck: how many things wait on ONE person's yes"
+   ],
+   "rootCauses": [
+    "Approvals funnelled through one person",
+    "Unclear briefs causing rework",
+    "No visible status -- things wait because nobody sees them waiting",
+    "Deadlines without owners"
+   ],
+   "interventions": [
+    {
+     "n": "Approval thresholds",
+     "d": "Below a defined size, the doer decides; above it, one named approver with a 48-hour rule. Frees the founder AND the queue."
+    },
+    {
+     "n": "Visible status board",
+     "d": "One shared list (paper or ClickUp): task / owner / waiting-on / due. The point is making waiting VISIBLE, not the tool."
+    },
+    {
+     "n": "Brief-before-work rule",
+     "d": "Nothing starts without three lines: what, for whom, done-when. Kills rework at the source."
+    }
+   ],
+   "keyDocs": [
+    "interview-guide",
+    "doc-checklist",
+    "action-plan"
+   ],
+   "indicators": [
+    "Days from task assigned to task done (3 real recent tasks)",
+    "Rework count last month (things done twice)",
+    "Items currently waiting on a single approver"
+   ],
+   "watchFor": "Efficiency drives can read as blame to overloaded staff. Frame everything as 'freeing your time', never 'making you faster' -- and mean it."
+  },
+  "Lack of team Management": {
+   "summary": "People work hard but as individuals, not a team. Usually a missing management LAYER or rhythm, not missing management SKILL.",
+   "diagnoseFirst": [
+    "Who actually manages whom? Draw it from behaviour (who do people ask when stuck), not the org chart",
+    "Does any manager have TIME to manage, or is management everyone's second job?",
+    "Find the rhythm: is there any regular moment where work is reviewed and help is offered? Or only crisis calls?",
+    "Ask each senior person: who are you developing? Silence is the answer"
+   ],
+   "rootCauses": [
+    "Founder manages everyone directly (span too wide)",
+    "Managers promoted but never given time or backing",
+    "No review rhythm -- management happens only when things break",
+    "Nobody develops second-line people"
+   ],
+   "interventions": [
+    {
+     "n": "A real second line",
+     "d": "2-3 coordinators with NAMED people, real say, and protected time -- the VSS pattern: a 6-person cadre replaced founder-does-everything."
+    },
+    {
+     "n": "The weekly rhythm",
+     "d": "One fixed slot per team: what happened, what's stuck, who needs help. Same day, same time, 30 minutes, no cancellations for a month."
+    },
+    {
+     "n": "One-page role notes",
+     "d": "Per coordinator: decides alone / decides with founder / passes up. Clarity of authority IS the management training."
+    }
+   ],
+   "keyDocs": [
+    "capacity-assessment",
+    "feedback-plan",
+    "handover-pack"
+   ],
+   "indicators": [
+    "Questions escalated to the founder per week",
+    "Staff who can name their direct manager (ask everyone)",
+    "Coordinator decisions made without founder sign-off last month"
+   ],
+   "watchFor": "The founder must VISIBLY route questions back to coordinators or the second line dies in a fortnight. Coach the founder's behaviour first -- the team follows what the founder does, not what the chart says."
+  },
+  "Lack of role Clarity": {
+   "summary": "Everyone does everything, so key things belong to nobody. The dangerous version: it FEELS like flexibility and loyalty, so nobody names it as a problem.",
+   "diagnoseFirst": [
+    "Ask 3 people to describe THEIR OWN job in one sentence, then their colleague's -- mismatches map the fog",
+    "List work that fell through last quarter: whose was it? 'Everyone's' means nobody's",
+    "Check the mirror image: what do TWO people both believe they own (duplicated effort, quiet turf friction)",
+    "Test measurement: are people judged on outcomes, or on being busy and present?"
+   ],
+   "rootCauses": [
+    "Grew from 3 people to 15 without ever dividing work",
+    "Roles written once for a funder, never used",
+    "Fear that clear roles = rigid hierarchy",
+    "Measurement by presence, not output"
+   ],
+   "interventions": [
+    {
+     "n": "Ownership map, done together",
+     "d": "Whole team, one wall: every recurring task -> one owner -> one backup. Done WITH them in an afternoon, not written FOR them in a week."
+    },
+    {
+     "n": "Output lines",
+     "d": "Each role gets 2-3 output statements (what exists because this role exists). Replaces task lists that read like chores."
+    },
+    {
+     "n": "The unowned-work rule",
+     "d": "Anything new gets an owner in the same meeting it is born, or it does not start."
+    }
+   ],
+   "keyDocs": [
+    "interview-guide",
+    "capacity-assessment",
+    "action-plan"
+   ],
+   "indicators": [
+    "Tasks on the ownership map with a named owner (before: count the unowned)",
+    "Items dropped/late last month because ownership was unclear",
+    "People who can state their 2-3 outputs unprompted"
+   ],
+   "watchFor": "Role clarity work surfaces buried conflicts -- two people discover they both 'own' the same thing. Expect one hard conversation; schedule it deliberately with both present, don't let it happen in the corridor."
+  },
+  "Workflow Issue": {
+   "summary": "The work is understood but its PATH is broken -- steps missing, orders wrong, formats dying between desks. Fix the path, not the people.",
+   "diagnoseFirst": [
+    "Walk ONE real item through its whole path physically -- sit where it sits, see what each hand does to it",
+    "Find the format breaks: where does content get retyped, restructured, translated? Each break loses a day and some truth",
+    "Find the missing step: the handover where nobody checks what came out the other side (the 'last look' that belongs to no one)",
+    "Check the graveyard: which past workflow fixes died, and what killed them"
+   ],
+   "rootCauses": [
+    "Workflow grew by accretion -- nobody ever designed it",
+    "Steps exist because they always did (nobody remembers why)",
+    "Format changes mid-path force retyping",
+    "No owner for the path itself, only for pieces"
+   ],
+   "interventions": [
+    {
+     "n": "Redesign on the wall",
+     "d": "Map current path with the people who run it -> mark waits, breaks, retypes -> remove before adding. The smallest path that works."
+    },
+    {
+     "n": "One format, end to end",
+     "d": "The field version IS the office version IS the funder version, designed once with all three readers in mind."
+    },
+    {
+     "n": "Path owner + last look",
+     "d": "One person owns the whole path and takes the last look at the output -- ten minutes that catches what three careful people each assumed another had checked."
+    }
+   ],
+   "keyDocs": [
+    "doc-checklist",
+    "diagnostic-report",
+    "action-plan"
+   ],
+   "indicators": [
+    "Steps in the current path vs redesigned path (count them)",
+    "Times content is retyped/reformatted along the way",
+    "Days end-to-end for one real item (3 cases, before and after)"
+   ],
+   "watchFor": "Never remove a step without asking what invisible purpose it serves -- some 'pointless' steps are quietly protecting against a past disaster. Ask 'what would break?' before cutting."
+  }
+ }
+}
