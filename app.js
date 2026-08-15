@@ -443,12 +443,13 @@ const App = (() => {
   // With this, NOTHING can wipe a half-filled form -- not a render, not a
   // reload, not switching desktops, not closing the tab.
   const DRAFT_KEY = "od_intake_draft_v1";
+  function draftKey() { return route().query.mode === "client" ? DRAFT_KEY + "_client" : DRAFT_KEY; }
   function saveDraft() {
-    try { localStorage.setItem(DRAFT_KEY, JSON.stringify(readIntake())); } catch (e) {}
+    try { localStorage.setItem(draftKey(), JSON.stringify(readIntake())); } catch (e) {}
   }
   function restoreDraft() {
     let d;
-    try { d = JSON.parse(localStorage.getItem(DRAFT_KEY) || "null"); } catch (e) { return; }
+    try { d = JSON.parse(localStorage.getItem(draftKey()) || "null"); } catch (e) { return; }
     if (!d) return;
     const set = (id, v) => { const el = document.getElementById(id); if (el && v) el.value = v; };
     set("f_org", d.org); set("f_contact", d.contact); set("f_title", d.title); set("f_acct", d.acct);
@@ -459,7 +460,7 @@ const App = (() => {
     if (d.baseline) { set("f_b1", d.baseline[0]); set("f_b2", d.baseline[1]); set("f_b3", d.baseline[2]); }
     set("f_notes", d.notes);
   }
-  function clearDraft() { try { localStorage.removeItem(DRAFT_KEY); } catch (e) {} }
+  function clearDraft() { try { localStorage.removeItem(draftKey()); } catch (e) {} }
 
   // Auto-suggests the next AKL-nnn source code from the highest one in use.
   function nextAcct() {
@@ -562,10 +563,22 @@ const App = (() => {
     return used < 5 ? used + 1 : null;
   }
 
+  // Copy that never lies: the success message shows ONLY after the browser
+  // confirms the copy. If the browser refuses (focus rules, permissions --
+  // common on phones), a select-and-copy box appears instead of a false toast.
+  function copyText(text, successMsg) {
+    const fallback = () => {
+      const w = window.prompt("Your browser blocked automatic copying. The text is selected -- press Ctrl/Cmd+C, then OK:", text);
+      void w;
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(() => toast(successMsg)).catch(fallback);
+    } else fallback();
+  }
+
   function shareIntakeLink() {
     const url = location.origin + location.pathname + "#/intake?mode=client";
-    if (navigator.clipboard) navigator.clipboard.writeText(url);
-    toast("Link copied -- send it to the client on WhatsApp or email. They fill the form and send you back a code; import it from the Clients page.");
+    copyText(url, "Link copied -- send it to the client on WhatsApp or email. They fill the form and send you back a code; import it from the Clients page.");
   }
 
   // ---- intake codes: UTF-8 safe base64url. The code IS the data -- nothing
@@ -597,7 +610,7 @@ const App = (() => {
       <b>Done. Send this whole code back:</b>
       <textarea readonly rows="5" style="margin-top:8px;font-family:monospace;font-size:12px" onclick="this.select()">${esc(code)}</textarea>
       <div class="row" style="margin-top:8px">
-        <button class="btn primary" onclick="navigator.clipboard.writeText(this.parentElement.previousElementSibling.value).then(()=>App.toast('Copied'))">Copy code</button>
+        <button class="btn primary" onclick="App.copyText(this.parentElement.previousElementSibling.value, 'Code copied -- paste it into WhatsApp or email')">Copy code</button>
         <span class="xs mut">Paste it into WhatsApp or email, send, done.</span>
       </div>
     </div>`;
@@ -623,7 +636,7 @@ const App = (() => {
       ${t.status === "draft" ? `<div class="rulebox"><b>DRAFT.</b> Written by the system, not yet reviewed by you. Read it fully and edit before it ever reaches a client. Once you approve it, tell the next session to mark it final.</div>` : ""}
       <div class="card"><pre class="docbody" id="docbody">${esc(body)}</pre></div>
       <div class="row" style="margin-top:12px">
-        <button class="btn primary" onclick="navigator.clipboard.writeText(document.getElementById('docbody').textContent).then(()=>App.toast('Copied -- paste into Gmail, Word, anywhere'))">Copy full text</button>
+        <button class="btn primary" onclick="App.copyText(document.getElementById('docbody').textContent, 'Copied -- paste into Gmail, Word, anywhere')">Copy full text</button>
         <button class="btn" onclick="App.downloadDoc('${esc(id)}')">Download (.txt)</button>
       </div>
     </div>`;
@@ -994,7 +1007,7 @@ const App = (() => {
   return {
     boot, nav, render, toast,
     saveIntake, shareIntakeLink, makeIntakeCode, doImportCode, exportBackup, importBackup,
-    saveDraft, downloadDoc, setIssue,
+    saveDraft, downloadDoc, setIssue, copyText,
     toggleTask, toggleGate, doAdvance, addWait, removeWait, confirmDelete,
     testConnection, saveSync, disconnectSync, syncNow,
   };
