@@ -214,3 +214,11 @@ input, select, textarea{font-size:16px} /* below 16px iOS zooms the page on focu
 body.client-mode nav{display:none}
 body.client-mode .sync-pill{display:none}
 body.client-mode .copyright{display:block}
+
+/* settings gear -- deliberate corner placement so it is never hit by accident */
+.gearlink{font-size:17px;color:var(--muted);text-decoration:none;line-height:1;padding:4px}
+.gearlink:hover{color:var(--accent)}
+/* colour legend for progress dots and step pills */
+.colorkey{display:flex;gap:14px;flex-wrap:wrap;font-size:11.5px;color:var(--muted);margin:2px 0 10px}
+.colorkey span{display:inline-flex;align-items:center;gap:5px}
+.ck{width:9px;height:9px;border-radius:50%;display:inline-block;flex-shrink:0}
