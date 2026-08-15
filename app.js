@@ -364,7 +364,7 @@ const App = (() => {
       <h2 class="vtitle">${clientMode ? "Organisation intake form" : "Add a client &mdash; intake"}</h2>
       <p class="sm mut">${clientMode
         ? "Please answer what you can &mdash; skip anything unclear, everything can be discussed later. When you submit, you'll get a short code to send back on WhatsApp or email. <b>Nothing is uploaded anywhere</b>; the code is the data, and only the person you send it to can read it."
-        : "Fills the 7 discovery questions (methodology §1.3), your own ClickUp pre-planning fields, and the baseline Clarity flagged as the highest-value habit to start. Saving creates the client at Step 0."}</p>
+        : "Fills the 7 discovery questions, your own ClickUp pre-planning fields, and the baseline -- the three numbers that later prove the change happened. Saving creates the client at Step 0."}</p>
 
       <fieldset><legend>Who</legend>
         <div class="formgrid">
@@ -384,7 +384,7 @@ const App = (() => {
         <textarea id="f_ask" rows="2"></textarea>
       </fieldset>
 
-      <fieldset><legend>The 7 discovery questions (§1.3)</legend>
+      <fieldset><legend>The 7 discovery questions (1.3)</legend>
         <label>What is not working now?</label><textarea id="f_q1" rows="2"></textarea>
         <label>Who is affected?</label><textarea id="f_q2" rows="2"></textarea>
         <label>Since when has this been happening?</label><input id="f_q3">
