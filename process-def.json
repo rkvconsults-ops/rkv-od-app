@@ -1,826 +1,826 @@
 {
-  "line": "OD",
-  "version": "1.0",
-  "updated": "2026-08-14",
-  "title": "The OD Dashboard",
-  "subtitle": "Four stages, fourteen steps. Every step shows what to have in hand, what to send, and what to get back, together with the honest build-status of each item.",
-  "chips": [
-    {
-      "big": "₹45,000",
-      "small": "Pilot rate · Rapid Org Diagnostic · first FIVE engagements only"
-    },
-    {
-      "big": "50% / 50%",
-      "small": "Advance / on completion — tie tranche 2 to handover, not the report"
-    }
-  ],
-  "gate_banner": "Before any intervention is designed (Stage III · Step 10), the engagement's specific problem routes through the Clarity agent — matched on discipline, geography and scale. The design decision stays Rahul's; the client never sees the step. Skip only when the practice has already delivered and evidenced the same intervention in a comparable organisation, and name which conditions the new case satisfies (rule 2a).",
-  "sources_line": "Generated from: engagement-runbook-2026-08-14.md · methodology-v1.md · the ClickUp pre-planning list · the adoption-judgment brief-2026-08-14.md · 00-identity/the pricing rules · 02-pipeline/the follow-up cadence · engagements.json. Regenerate with python3 06-delivery/od/build-map.py — never hand-edit the HTML. Nothing here sends anything; Tier 3 stands.",
-  "stages": [
-    {
-      "id": 1,
-      "title": "Pre-Planning",
-      "range": "Before they are a client",
-      "desc": "Source on evidence, not signal. Qualify against real entry criteria. First touch and the follow-up clock.",
-      "intro": "The gate that already works. A funding announcement is a signal, not a qualification — the 8-org batch of 26 July was archived unsent for exactly this. Two organisations sourced under the current gate produced one draft, and that was the gate working.",
-      "steps": [
-        {
-          "n": "0",
-          "title": "Before you contact anyone",
-          "tag": "Sourcing & qualification",
-          "status": "ok",
-          "have": [
-            [
-              "ok",
-              "Entry criteria — 5 tests"
-            ],
-            [
-              "ok",
-              "Lead signals"
-            ],
-            [
-              "ok",
-              "Written fit-check per org → 02-pipeline/dossiers/"
-            ],
-            [
-              "ok",
-              "A pipeline record created before any outreach"
-            ],
-            [
-              "ok",
-              "ClickUp Pre-Planning List: existing comms model · active members · their issue · their ask · terms"
-            ]
-          ],
-          "send": [
-            [
-              "info",
-              "Nothing. No price, no pilot language, no claim about what is wrong with them."
-            ]
-          ],
-          "get": [
-            [
-              "info",
-              "A qualified name — or a recorded reason it was held (Akshaya Patra pattern)"
-            ]
-          ],
-          "rules": [
-            {
-              "t": "The five entry tests",
-              "d": "Real pain point · leadership willing to engage honestly · staff access possible · evidence reviewable · open to phased improvement. Fail any → no Touch-1 draft."
-            }
-          ],
-          "qa": [
-            {
-              "q": "They were just announced as a grant winner — good lead?",
-              "a": "A signal only. Run the fit-check. The 26-July batch of 8 was sourced from one grant announcement and archived unsent; signal-only sourcing is the recorded failure mode."
-            }
-          ],
-          "src": "Step 0"
-        },
-        {
-          "n": "1",
-          "title": "First touch — the email",
-          "tag": "Touch 1 · day 0",
-          "status": "ok",
-          "have": [
-            [
-              "ok",
-              "Real address from their own site or publication — never broker data (ZoomInfo, RocketReach)"
-            ],
-            [
-              "ok",
-              "Every claim re-sourced to the original document that morning (the SAFE grant claim failed exactly here)"
-            ],
-            [
-              "ok",
-              "VSS reference in permitted written form only: “an NGO managing multi-year institutional grant funding” — the ₹3cr figure never in writing"
-            ]
-          ],
-          "send": [
-            [
-              "ok",
-              "Touch-1 draft: under 90 words · one specific verifiable thing about THEM · no compliment sandwich · ask for a conversation, not a sale · “Dear [Name],” · no em dash"
-            ],
-            [
-              "info",
-              "Attach nothing. Not the process note, not a profile, not a rate."
-            ]
-          ],
-          "get": [
-            [
-              "info",
-              "A reply — or silence, which starts the clock"
-            ]
-          ],
-          "rules": [
-            {
-              "t": "Hypothesis, not diagnosis",
-              "d": "The email invites a conversation about what might be true. If they reply “that area is going fine”, that is a real answer, not a failed pitch — the QUEST draft is the model."
-            }
-          ],
-          "qa": [
-            {
-              "q": "Can I mention the pilot rate to get attention?",
-              "a": "Never. Price never appears in the first email (the pricing rules). Sequence: conversation → scope → number."
-            }
-          ],
-          "src": "Step 1 · the outreach writing rules"
-        },
-        {
-          "n": "2",
-          "title": "No reply — the follow-up clock",
-          "tag": "Days 5 · 12 · 20 → nurture",
-          "status": "part",
-          "have": [
-            [
-              "ok",
-              "Cadence: T2 day 5 LinkedIn DM · T3 day 12 pure value · T4 day 20 soft close "
-            ],
-            [
-              "ok",
-              "Hard stop: no named contact → no draft, ever. Nothing addressed to a “Team”."
-            ],
-            [
-              "miss",
-              "What “pure value” at Touch 3 actually is — undefined. Candidate: the NGO readiness self-check, once it ships"
-            ]
-          ],
-          "send": [
-            [
-              "ok",
-              "T2 short DM referencing the email"
-            ],
-            [
-              "part",
-              "T3 one useful thing they can use whether or not they hire you"
-            ],
-            [
-              "ok",
-              "T4 soft close — door left open, clock stops"
-            ]
-          ],
-          "get": [
-            [
-              "info",
-              "A reply at any touch, or a clean move to nurture — no chasing beyond T4"
-            ]
-          ],
-          "rules": [],
-          "qa": [
-            {
-              "q": "They opened but never replied — send a 5th touch?",
-              "a": "No. After T4 the prospect moves to nurture. No-reply is the default (rule 5); pipeline hygiene beats clever persistence."
-            }
-          ],
-          "src": "Step 2 · the follow-up cadence"
-        },
-        {
-          "n": "3",
-          "title": "They reply",
-          "tag": "The first conversion moment",
-          "status": "miss",
-          "have": [
-            [
-              "miss",
-              "A holding reply + scheduling note. Two paragraphs and a calendar slot — smallest gap in the whole map"
-            ]
-          ],
-          "send": [
-            [
-              "miss",
-              "Warm confirmation within 24h: thank them, propose two time slots for a 20-minute call, promise nothing else"
-            ]
-          ],
-          "get": [
-            [
-              "info",
-              "A booked 20-minute scoping call"
-            ]
-          ],
-          "rules": [],
-          "qa": [
-            {
-              "q": "Should I attach the process note now, before the call?",
-              "a": "No — before the call it is a brochure. Its moment is within 24 hours AFTER the call, when it answers “what happens next”."
-            }
-          ],
-          "src": "Step 3"
-        }
-      ]
-    },
-    {
-      "id": 2,
-      "title": "Conversion",
-      "range": "Call → Proposal → Contract",
-      "desc": "The four moments where money and trust change hands. Strongest instincts, thinnest paperwork.",
-      "intro": "Your own methodology names this the first sale: §1.4 — the first sale is not the service, it is trust in the diagnostic process. ClickUp already holds the call checklist and the 50/50 terms; the proposal and ToR templates do not exist yet.",
-      "steps": [
-        {
-          "n": "4",
-          "title": "The 20-minute scoping call",
-          "tag": "Diagnosis of fit, live",
-          "status": "part",
-          "have": [
-            [
-              "ok",
-              "Seven discovery questions (§1.3): what is not working · who is affected · since when · what evidence · what was tried · what would improvement look like in daily work · who must approve change"
-            ],
-            [
-              "ok",
-              "ClickUp call structure: existing comms model · active members · their issue (5 types) · their ask"
-            ],
-            [
-              "ok",
-              "Rehearsed answer to “how will you actually do this?” — look before you fix → small adoptable set → tested with real users → handed over. Ends on the VSS monthly-review evidence"
-            ],
-            [
-              "miss",
-              "Note-capture format (the engagement brief is built from this call)"
-            ],
-            [
-              "miss",
-              "Disqualification script — criteria say when to walk away, nothing says how"
-            ]
-          ],
-          "send": [
-            [
-              "info",
-              "Nothing in writing during the call. Never a number."
-            ],
-            [
-              "ok",
-              "Within 24h AFTER: the OD Process Note (EN / HI-EN) — ⚠️ fill the five xxx placeholders first: For, Date, timeline, reference engagement, contact"
-            ]
-          ],
-          "get": [
-            [
-              "info",
-              "Answers to all 7 questions, in their words — you will quote these back in the proposal"
-            ],
-            [
-              "info",
-              "Who must approve change"
-            ],
-            [
-              "info",
-              "Their issue vs their shopping list — the distance between them is the diagnosis"
-            ]
-          ],
-          "rules": [
-            {
-              "t": "Item 3 vs item 5 — keep them apart",
-              "d": "“What issue do they want to solve” and “what do they think they need” are different answers. An org that names ‘no role clarity’ and asks for ‘report writing’ has just told you something it did not mean to."
-            },
-            {
-              "t": "Add one question (Clarity, 14 Aug)",
-              "d": "“What have you already tried and stopped?” — the graveyard question. Three abandoned registers means the constraint is not format quality, and delivering a fourth is malpractice."
-            }
-          ],
-          "qa": [
-            {
-              "q": "All 7 questions + rapport + my own pitch in 20 minutes?",
-              "a": "It does not fit — that is the open gap. Priority order: their issue (Q1–Q4) → who approves → your one-paragraph how. Park the rest for the proposal call-back."
-            },
-            {
-              "q": "They ask the price on the call?",
-              "a": "“I price by scope, not by hour — you'll have a number in the proposal within 48 hours of this call, tied to exactly what we agree here.” Never improvise a figure live."
-            }
-          ],
-          "src": "Step 4 · methodology §1.3–1.4 · ClickUp Pre-Planning List"
-        },
-        {
-          "n": "5",
-          "title": "The proposal",
-          "tag": "Where ₹45,000 appears — once",
-          "status": "miss",
-          "have": [
-            [
-              "miss",
-              "Proposal template — does not exist in any form. Largest single gap in the package"
-            ]
-          ],
-          "send": [
-            [
-              "miss",
-              "Their problem in THEIR words from the call · scope in/out (§6) · the phases with what they receive (Process Note §3) · what you need from them (§5) · timeline 2–3 weeks · THE NUMBER: ₹45,000 pilot shown against the ₹75,000–1,20,000 standard · the exchange: written case study + nameable reference, stated not implied · FCRA line if applicable"
-            ]
-          ],
-          "get": [
-            [
-              "info",
-              "A yes, a negotiation, or a documented no"
-            ]
-          ],
-          "rules": [
-            {
-              "t": "Say five is bounded, in writing",
-              "d": "“First five engagements” goes in the proposal so the client understands the rate expires by design — that is what keeps a pilot rate from becoming the standing rate."
-            },
-            {
-              "t": "FCRA — the only permitted sentence",
-              "d": "“Happy to align the contract structure with your FCRA auditor's guidance.” Nothing further, ever (WD-006)."
-            }
-          ],
-          "qa": [
-            {
-              "q": "They ask for a discount on the pilot rate?",
-              "a": "Scope down, not price down (the pricing rules). Remove a module and keep the number honest — a discount at the door anchors permanently and NGO directors talk to each other."
-            }
-          ],
-          "src": "Step 5 · the pricing rules"
-        },
-        {
-          "n": "6",
-          "title": "They confirm — the contract / ToR",
-          "tag": "Nothing starts without it",
-          "status": "part",
-          "have": [
-            [
-              "ok",
-              "Payment structure exists (ClickUp): 50% advance · 50% on completion"
-            ],
-            [
-              "part",
-              "⚠️ Move tranche 2 off “report shared” onto handover-with-named-owner — else the contract pays for a document while §7.5 says success is behaviour change (trigger text truncated; verify)"
-            ],
-            [
-              "miss",
-              "ToR template — promised as the Phase-1 deliverable in the Process Note, does not exist"
-            ],
-            [
-              "miss",
-              "Confidentiality clause · access clause · exit terms"
-            ]
-          ],
-          "send": [
-            [
-              "miss",
-              "ToR: parties · scope in/out · phases & dates · deliverables · what THEY provide · confidentiality both ways · fee & triggers · IP and case-study consent · access failure terms · exit"
-            ]
-          ],
-          "get": [
-            [
-              "info",
-              "Signature + 50% advance + a named focal point"
-            ],
-            [
-              "warn",
-              "Case-study consent IN the contract — the pilot rate is traded for a written case study and a nameable reference; if it is not written here, you discounted for nothing"
-            ]
-          ],
-          "rules": [],
-          "qa": [
-            {
-              "q": "They sign but the advance doesn't arrive?",
-              "a": "The engagement has not started. Kickoff is gated on signature AND advance — that is what the 50% is for."
-            }
-          ],
-          "src": "Step 6 · ClickUp item 4 · the pricing rules"
-        }
-      ]
-    },
-    {
-      "id": 3,
-      "title": "Delivery",
-      "range": "The 8-phase cycle · Kickoff → Handover",
-      "desc": "Diagnosis first, always. One phase is fully proven (Implementation — VSS). One carries the CLARITY gate.",
-      "intro": "Methodology §7.1: every engagement starts with diagnosis, not solution design. Phase 5 is the one complete stage — six adopted policies at VSS prove it. Phase 2 is the weakest and most exposed: a scored capacity baseline is promised in writing and cannot yet be produced.",
-      "steps": [
-        {
-          "n": "7",
-          "title": "Kickoff — intake & scoping",
-          "tag": "Phase 1",
-          "status": "part",
-          "have": [
-            [
-              "ok",
-              "Signed ToR + advance received + named focal point"
-            ],
-            [
-              "part",
-              "Engagement brief — aakalan structures it from your notes; no template exists"
-            ]
-          ],
-          "send": [
-            [
-              "info",
-              "The brief, for their validation: issue · affected functions · objective · stakeholders · time frame · constraints · expected outcome"
-            ]
-          ],
-          "get": [
-            [
-              "warn",
-              "3–5 success indicators, set NOW, before anything changes (validation cycle Step 3). Skip this and Phase 6 has nothing to measure — this is where the evaluation problem is actually created"
-            ],
-            [
-              "info",
-              "BASELINE: three countable things, same conversation, no instrument needed — how long X takes now · how many people touch it · where it stalls. VSS never got one; a case study with no baseline is an assertion (Clarity, highest-value change)"
-            ]
-          ],
-          "rules": [],
-          "qa": [
-            {
-              "q": "What does a 3-countable baseline look like for a documentation problem?",
-              "a": "e.g. days from field visit to report reaching the office · number of hands it passes through · how many of last quarter's reports the funder returned with queries. Two hours of asking, written down before you touch anything."
-            }
-          ],
-          "src": "Step 7 · validation cycle Steps 3–4 · the adoption-judgment brief"
-        },
-        {
-          "n": "8",
-          "title": "Diagnosis",
-          "tag": "Phase 2 — weakest, most exposed",
-          "status": "miss",
-          "have": [
-            [
-              "ok",
-              "Eight evidence sources (§4.1) · phase-2 method list · the hypothesis rule: thin evidence = hypothesis, never conclusion"
-            ],
-            [
-              "part",
-              "the NGO readiness self-check — frames what to look at; NOT a baseline (self-scored, 10 min, pre-client)"
-            ],
-            [
-              "miss",
-              "Interview guide (prospect questions exist, diagnosis questions do not)"
-            ],
-            [
-              "miss",
-              "Document-request checklist"
-            ],
-            [
-              "miss",
-              "Capacity assessment instrument + scoring — adapt Marguerite Casey OCAT (free, spreadsheet, 4 domains) → Google Forms. VF-007 forbids building a rival to SELL; delivering with an adapted tool is a different act"
-            ],
-            [
-              "miss",
-              "Observation protocol · interviewee confidentiality note (staff are about to tell you what is wrong with their own management)"
-            ],
-            [
-              "part",
-              "Ten questions audited in from the Ingentis org-design checklist (14 Aug 2026), NGO-filtered — see the full ten below and the rules box for what was deliberately left out"
-            ]
-          ],
-          "send": [
-            [
-              "info",
-              "Nothing yet — you are gathering"
-            ]
-          ],
-          "get": [
-            [
-              "info",
-              "Evidence from ≥3 sources · the existing registers (attendance notebook, WhatsApp group — the formats that already work) · the graveyard (tools started and stopped) · who is paid to do what, from which budget head"
-            ]
-          ],
-          "rules": [
-            {
-              "t": "Scale reference",
-              "d": "VSS's own OD baseline: 12 areas · 37 sub-areas · 225 questions · 66.70%. That instrument already exists inside your one client's world."
-            },
-            {
-              "t": "The language check (Clarity)",
-              "d": "What language will each document live in, and what language does its user work in? A finance policy in English for a Hindi-working accounts assistant is decoration with a signature."
-            },
-            {
-              "t": "Ten diagnostic questions added from an external checklist (Ingentis org.manager, audited 2026-08-14)",
-              "d": "Meetings are goal-oriented and efficiently run · the org was designed deliberately or grew as patchwork · roles are measured by output/results, not just task/input · decision structure is efficient and involves the right people · there is a real internal leadership pipeline, not just a founder · managers have TIME and resources to mentor, not just the skill to · information silos or ‘expertise empires’ exist and are named · task-loads are realistic, not chronically overloaded · staff have real voice and influence, not just a title · knowledge is retained across staff turnover, not lost with each departure. Each closes a real gap this stage didn't cover — see engagement-runbook / package-review cross-check, audited 2026-08-14. Deliberately NOT imported: compensation streamlining and back-office sizing (both assume a corporate pay/HR scale most 5–30-staff Indian NGOs don't have — the real problem here is usually under-staffing, already covered by the budget-line test above) and any 'customer' framing (translate to donor/beneficiary/community, never paste the word itself into a client-facing document)."
-            }
-          ],
-          "qa": [
-            {
-              "q": "Leadership offers to answer for everyone — skip staff interviews?",
-              "a": "No. Staff access is an entry criterion (§1.2). If access fails now, the diagnosis is undeliverable — surface it as a contract issue, not a scheduling one."
-            }
-          ],
-          "src": "Step 8 · the adoption-judgment brief Part 1"
-        },
-        {
-          "n": "9",
-          "title": "Feedback session",
-          "tag": "Phase 3 — trust is earned or lost here",
-          "status": "part",
-          "have": [
-            [
-              "ok",
-              "§7.2 five tests per recommendation: evidenced · feasible · mission-aligned · prioritised by impact/effort · plain language"
-            ],
-            [
-              "ok",
-              "Blame-direction rule (writing-craft §3): every short declarative points AT the reader or at their expense — a diagnostic is read by the people whose work it describes"
-            ],
-            [
-              "ok",
-              "Plain-language test (§5b): would someone outside the sector understand every sentence on first read?"
-            ],
-            [
-              "miss",
-              "Diagnostic report template · facilitation plan · a method for “priorities agreed together” · what to do when leadership disagrees with a finding"
-            ]
-          ],
-          "send": [
-            [
-              "part",
-              "The diagnostic report — evidence, assumptions and priority issues, each labelled; hypotheses marked as hypotheses"
-            ]
-          ],
-          "get": [
-            [
-              "info",
-              "Agreed priorities, in writing, signed by whoever must approve change"
-            ]
-          ],
-          "rules": [],
-          "qa": [
-            {
-              "q": "The director rejects a finding flat out?",
-              "a": "Ask what evidence would change their mind, then go get it or drop it. A finding held against the client's will dies at implementation anyway — §4.2's adoption test starts in this room."
-            }
-          ],
-          "src": "Step 9 · the writing rules §3, §5b"
-        },
-        {
-          "n": "10",
-          "title": "Action planning — CLARITY GATE",
-          "tag": "Phase 4 · design only what they can adopt",
-          "status": "gate",
-          "gate": true,
-          "have": [
-            [
-              "ok",
-              "⚑ CLARITY runs BEFORE anything is designed. Feed it three things or it routes on a guess: the root-cause statement · the client's words for what they want built · what they tried and abandoned"
-            ],
-            [
-              "ok",
-              "CDC SMART checklist (in the folder): one action verb, nothing unmeasurable"
-            ],
-            [
-              "ok",
-              "Nine-intervention menu (§Phase 4) · root-cause reframing (§Phase 3)"
-            ],
-            [
-              "ok",
-              "The five issue types (ClickUp) map onto the menu: mis-communication → comms routines · role clarity → role clarification · workflow → redesign"
-            ],
-            [
-              "miss",
-              "Action plan + roadmap template · impact-vs-effort grid"
-            ]
-          ],
-          "send": [
-            [
-              "part",
-              "Action design note: each intervention with what it REPLACES, who does it instead of what, on which day, and its forcing function"
-            ]
-          ],
-          "get": [
-            [
-              "info",
-              "Client sign-off on a plan small enough to actually happen"
-            ]
-          ],
-          "rules": [
-            {
-              "t": "The adoption test, per item (Clarity verdict)",
-              "d": "Adoption capacity is not a score — it is a per-item prediction: what does this replace · who does it instead of what · on which day · what happens OUTSIDE the org if it is not done. No answer to “instead of what” = a practice added to somebody's evening."
-            },
-            {
-              "t": "Which meeting does this live in?",
-              "d": "A design constraint, not a closing question. Any new practice lands on an existing recurring slot or it has no heartbeat — the one mechanism with real VSS evidence, and it writes most of the handover pack for free."
-            },
-            {
-              "t": "Forcing function first",
-              "d": "Sort every requested item by “who asked for this?” — auditor / FCRA / funder-format items get adopted; internal-virtue items get adopted last or never. Strongest predictor available, costs one question."
-            }
-          ],
-          "qa": [
-            {
-              "q": "When may the CLARITY gate be skipped?",
-              "a": "Only when the practice has already delivered and evidenced the SAME intervention in a comparable organisation — and then name which specific conditions the new case satisfies (rule 2a). Resemblance is not precedent."
-            },
-            {
-              "q": "The client insists on all four shopping-list items?",
-              "a": "Sort by forcing function in front of them: who asked for each, and what breaks externally if it isn't done. The list usually sorts itself; you never have to be the one saying no."
-            }
-          ],
-          "src": "methodology §Phase 4 (Clarity standing step) · the adoption-judgment brief Parts 1–3"
-        },
-        {
-          "n": "11",
-          "title": "Implementation",
-          "tag": "Phase 5 — the proven stage",
-          "status": "ok",
-          "have": [
-            [
-              "ok",
-              "PROVEN AT VSS: six policies adopted org-wide (digital · finance · fundraising · gender · HR · vehicle) + operational formats + project timelines + proposal flow + first standardised comms infrastructure incl. website"
-            ],
-            [
-              "ok",
-              "The adoption test (§4.2): can a real user understand it, use it, explain it, apply it — all four, in front of you"
-            ],
-            [
-              "part",
-              "Are the six VSS policies filed as reusable templates? Possibly the most valuable unfiled asset in the practice — CHECK before building anything new"
-            ],
-            [
-              "miss",
-              "Training design pack · job aids"
-            ]
-          ],
-          "send": [
-            [
-              "ok",
-              "The smallest usable version, built WITH them — plain language, tested against field staff as the readers who matter"
-            ]
-          ],
-          "get": [
-            [
-              "info",
-              "A real user passing the four-part adoption test · named owner per system"
-            ]
-          ],
-          "rules": [],
-          "qa": [
-            {
-              "q": "They ask for two more policies mid-build?",
-              "a": "Boundary rule §1.6: if the core problem is unclear, pause and diagnose. Scope-adds go into a note for engagement two — that is also how a pilot client becomes a full-rate client."
-            }
-          ],
-          "src": "Step 11 · Case-Note-VSS-Balotra-2026"
-        },
-        {
-          "n": "12",
-          "title": "Evaluation",
-          "tag": "Phase 6 — blocked by Step 8's instrument",
-          "status": "miss",
-          "have": [
-            [
-              "ok",
-              "Validation cycle Steps 5–6 · §7.5: success = behaviour change, not deliverable count"
-            ],
-            [
-              "miss",
-              "Endline = the Step-8 instrument re-run; no instrument, no endline"
-            ],
-            [
-              "miss",
-              "Default indicator set · adoption-measurement method for: used? by whom? how often? what friction?"
-            ]
-          ],
-          "send": [
-            [
-              "part",
-              "Evaluation note: each indicator against its Step-7 baseline"
-            ]
-          ],
-          "get": [
-            [
-              "info",
-              "The case-study evidence the pilot rate paid for — numbers a funder can read"
-            ]
-          ],
-          "rules": [
-            {
-              "t": "The luck that must become method",
-              "d": "VSS making documentation a standing monthly agenda item was found by reading their LinkedIn four months later. A +90-day calendar entry per engagement turns the strongest evidence the practice owns from accident into procedure."
-            }
-          ],
-          "qa": [
-            {
-              "q": "Nothing measurably changed by evaluation time?",
-              "a": "Report it. §Step 8 of the validation cycle: record what failed and which assumptions were wrong — do not scale what is not adopted. An honest null in the lesson log beats an inflated case study everywhere it matters."
-            }
-          ],
-          "src": "Step 12 · validation cycle"
-        },
-        {
-          "n": "13",
-          "title": "Exit & handover",
-          "tag": "Phase 7–8 · they stop needing you, on purpose",
-          "status": "part",
-          "have": [
-            [
-              "ok",
-              "Transfer list (§Phase 8): documented ownership · governance routines · training notes · editable templates · version control · review calendar"
-            ],
-            [
-              "ok",
-              "Versioning rule §3.5: every tool carries number, purpose, owner, review date"
-            ],
-            [
-              "miss",
-              "Handover pack template · ownership matrix · review-calendar template"
-            ]
-          ],
-          "send": [
-            [
-              "part",
-              "The handover pack — largely written already if “which meeting does this live in” was answered at Step 10"
-            ]
-          ],
-          "get": [
-            [
-              "warn",
-              "ASK NOW, while goodwill is current: the written case study · the nameable reference (draft it for them) · written permission for what may be said, figures vs facts · one photo/artefact. This is what ₹45,000 of discount purchased — and tranche 2 should release here"
-            ]
-          ],
-          "rules": [],
-          "qa": [
-            {
-              "q": "When exactly do I ask for the case study?",
-              "a": "At handover, same meeting, not months later. Draft the reference yourself and offer it for editing — a busy director approves a good draft and never writes one from scratch."
-            }
-          ],
-          "src": "Step 13"
-        }
-      ]
-    },
-    {
-      "id": 4,
-      "title": "After & Learn",
-      "range": "Layer 3 · the practice compounds",
-      "desc": "The lesson log, the +90-day check, the pilot counter. What turns five engagements into a practice instead of five separate jobs.",
-      "intro": "Methodology §3.6 is blunt: knowledge that is hard to find does not count as knowledge management. One engagement has produced one case note; at five pilots the cost of not running this layer is rebuilding the same things five times.",
-      "steps": [
-        {
-          "n": "14",
-          "title": "Close the loop",
-          "tag": "Within a week of handover",
-          "status": "miss",
-          "have": [
-            [
-              "miss",
-              "Lesson log (§3.2): context · issue · intervention · evidence used · adoption barriers · results · ASSUMPTIONS THAT PROVED WRONG · next time"
-            ],
-            [
-              "miss",
-              "Template library — file every reusable artefact with §3.5 versioning, starting with the VSS six"
-            ],
-            [
-              "part",
-              "Diagnostic pattern file — the ClickUp issue taxonomy is its beginning; add one row per engagement"
-            ]
-          ],
-          "send": [
-            [
-              "info",
-              "Nothing outward — this step is for the practice"
-            ]
-          ],
-          "get": [
-            [
-              "info",
-              "Reusable assets so engagement N+1 starts at 60%, not zero"
-            ]
-          ],
-          "rules": [
-            {
-              "t": "The pilot counter",
-              "d": "A pilot slot used is a pilot slot gone. Track n/5 — the moment engagement five closes, the rate is ₹75,000+ unless a fresh decision says otherwise."
-            }
-          ],
-          "qa": [
-            {
-              "q": "What goes in “assumptions that proved wrong”?",
-              "a": "The private version: what you believed about what they needed, what they would adopt, and how long it would take — against what happened. Clarity's note: by engagement four this file is worth more than the case studies."
-            }
-          ],
-          "src": "Step 14 · methodology Layer 3"
-        },
-        {
-          "n": "+90",
-          "title": "The 90-day check",
-          "tag": "One calendar entry per engagement",
-          "status": "miss",
-          "have": [
-            [
-              "miss",
-              "A scheduled +30 and +90-day check-in per closed engagement — currently nothing fires"
-            ]
-          ],
-          "send": [
-            [
-              "info",
-              "One short message to the named owner: “is it still being used?”"
-            ]
-          ],
-          "get": [
-            [
-              "info",
-              "Adoption evidence as method, not luck — and often the second engagement: the check-in that finds a new problem is the warmest sourcing channel the practice has"
-            ]
-          ],
-          "rules": [],
-          "qa": [
-            {
-              "q": "What if the answer is “we stopped using it”?",
-              "a": "Gold, twice over. It goes in the withdrawn-style lesson log (recorded failures do not repeat), and “what made it stop?” is a diagnostic conversation — which is Phase 1 of the next engagement."
-            }
-          ],
-          "src": "Step 12 rule · the adoption-judgment brief"
-        }
-      ]
-    }
-  ]
+ "line": "OD",
+ "version": "1.0",
+ "updated": "2026-08-14",
+ "title": "The OD Dashboard",
+ "subtitle": "Four stages, fourteen steps. Every step shows what to have in hand, what to send, and what to get back, together with the honest build-status of each item.",
+ "chips": [
+ {
+ "big": "₹45,000",
+ "small": "Pilot rate · Rapid Org Diagnostic · first FIVE engagements only"
+ },
+ {
+ "big": "50% / 50%",
+ "small": "Advance / on completion — tie tranche 2 to handover, not the report"
+ }
+ ],
+ "gate_banner": "Before any intervention is designed (Stage III · Step 10), the engagement's specific problem gets an outside-expert check — matched to the right field, the right geography, the right scale. The design decision stays Rahul's; the client never sees the step. Skip only when the practice has already delivered and evidenced the same intervention in a comparable organisation, and name exactly which conditions the new case satisfies -- resemblance is not precedent.",
+ "sources_line": "Generated from: engagement-runbook-2026-08-14.md · methodology-v1.md · the ClickUp pre-planning list · the adoption-judgment brief-2026-08-14.md · 00-identity/the pricing rules · 02-pipeline/the follow-up schedule · engagements.json. Regenerate with python3 06-delivery/od/build-map.py — never hand-edit the HTML. Nothing here sends anything; Tier 3 stands.",
+ "stages": [
+ {
+ "id": 1,
+ "title": "Pre-Planning",
+ "range": "Before they are a client",
+ "desc": "Source on evidence, not signal. Qualify against real entry criteria. First touch and the follow-up clock.",
+ "intro": "The gate that already works. A funding announcement is a signal, not a qualification — the 8-org batch of 26 July was archived unsent for exactly this. Two organisations sourced under the current gate produced one draft, and that was the gate working.",
+ "steps": [
+ {
+ "n": "0",
+ "title": "Before you contact anyone",
+ "tag": "Sourcing & qualification",
+ "status": "ok",
+ "have": [
+ [
+ "ok",
+ "Entry criteria — 5 tests"
+ ],
+ [
+ "ok",
+ "Lead signals"
+ ],
+ [
+ "ok",
+ "Written fit-check per org → 02-pipeline/dossiers/"
+ ],
+ [
+ "ok",
+ "A pipeline record created before any outreach"
+ ],
+ [
+ "ok",
+ "ClickUp Pre-Planning List: existing comms model · active members · their issue · their ask · terms"
+ ]
+ ],
+ "send": [
+ [
+ "info",
+ "Nothing. No price, no pilot language, no claim about what is wrong with them."
+ ]
+ ],
+ "get": [
+ [
+ "info",
+ "A qualified name — or a recorded reason it was held (Akshaya Patra pattern)"
+ ]
+ ],
+ "rules": [
+ {
+ "t": "The five entry tests",
+ "d": "Real pain point · leadership willing to engage honestly · staff access possible · evidence reviewable · open to phased improvement. Fail any → no Touch-1 draft."
+ }
+ ],
+ "qa": [
+ {
+ "q": "They were just announced as a grant winner — good lead?",
+ "a": "A signal only. Run the fit-check. The 26-July batch of 8 was sourced from one grant announcement and archived unsent; signal-only sourcing is the recorded failure mode."
+ }
+ ],
+ "src": "Step 0"
+ },
+ {
+ "n": "1",
+ "title": "First touch — the email",
+ "tag": "Touch 1 · day 0",
+ "status": "ok",
+ "have": [
+ [
+ "ok",
+ "Real address from their own site or publication — never broker data (ZoomInfo, RocketReach)"
+ ],
+ [
+ "ok",
+ "Every claim re-sourced to the original document that morning (the SAFE grant claim failed exactly here)"
+ ],
+ [
+ "ok",
+ "VSS reference in permitted written form only: “an NGO managing multi-year institutional grant funding” — the ₹3cr figure never in writing"
+ ]
+ ],
+ "send": [
+ [
+ "ok",
+ "Touch-1 draft: under 90 words · one specific verifiable thing about THEM · no compliment sandwich · ask for a conversation, not a sale · “Dear [Name],” · no em dash"
+ ],
+ [
+ "info",
+ "Attach nothing. Not the process note, not a profile, not a rate."
+ ]
+ ],
+ "get": [
+ [
+ "info",
+ "A reply — or silence, which starts the clock"
+ ]
+ ],
+ "rules": [
+ {
+ "t": "Hypothesis, not diagnosis",
+ "d": "The email invites a conversation about what might be true. If they reply “that area is going fine”, that is a real answer, not a failed pitch — the QUEST draft is the model."
+ }
+ ],
+ "qa": [
+ {
+ "q": "Can I mention the pilot rate to get attention?",
+ "a": "Never. Price never appears in the first email (the pricing rules). Sequence: conversation → scope → number."
+ }
+ ],
+ "src": "Step 1 · the outreach writing rules"
+ },
+ {
+ "n": "2",
+ "title": "No reply — the follow-up clock",
+ "tag": "Days 5 · 12 · 20 → nurture",
+ "status": "part",
+ "have": [
+ [
+ "ok",
+ "The schedule: T2 day 5 LinkedIn DM · T3 day 12 pure value · T4 day 20 soft close "
+ ],
+ [
+ "ok",
+ "Hard stop: no named contact → no draft, ever. Nothing addressed to a “Team”."
+ ],
+ [
+ "miss",
+ "What “pure value” at Touch 3 actually is — undefined. Candidate: the NGO readiness self-check, once it ships"
+ ]
+ ],
+ "send": [
+ [
+ "ok",
+ "T2 short DM referencing the email"
+ ],
+ [
+ "part",
+ "T3 one useful thing they can use whether or not they hire you"
+ ],
+ [
+ "ok",
+ "T4 soft close — door left open, clock stops"
+ ]
+ ],
+ "get": [
+ [
+ "info",
+ "A reply at any touch, or a clean move to nurture — no chasing beyond T4"
+ ]
+ ],
+ "rules": [],
+ "qa": [
+ {
+ "q": "They opened but never replied — send a 5th touch?",
+ "a": "No. After T4 the prospect moves to nurture. No-reply is the normal outcome, not a failure; working the schedule beats clever persistence."
+ }
+ ],
+ "src": "Step 2 · the follow-up schedule"
+ },
+ {
+ "n": "3",
+ "title": "They reply",
+ "tag": "The first conversion moment",
+ "status": "miss",
+ "have": [
+ [
+ "miss",
+ "A holding reply + scheduling note. Two paragraphs and a calendar slot — smallest gap in the whole map"
+ ]
+ ],
+ "send": [
+ [
+ "miss",
+ "Warm confirmation within 24h: thank them, propose two time slots for a 20-minute call, promise nothing else"
+ ]
+ ],
+ "get": [
+ [
+ "info",
+ "A booked 20-minute scoping call"
+ ]
+ ],
+ "rules": [],
+ "qa": [
+ {
+ "q": "Should I attach the process note now, before the call?",
+ "a": "No — before the call it is a brochure. Its moment is within 24 hours AFTER the call, when it answers “what happens next”."
+ }
+ ],
+ "src": "Step 3"
+ }
+ ]
+ },
+ {
+ "id": 2,
+ "title": "Conversion",
+ "range": "Call → Proposal → Contract",
+ "desc": "The four moments where money and trust change hands. Strongest instincts, thinnest paperwork.",
+ "intro": "Your own methodology names this the first sale: — the first sale is not the service, it is trust in the diagnostic process. ClickUp already holds the call checklist and the 50/50 terms; the proposal and ToR templates do not exist yet.",
+ "steps": [
+ {
+ "n": "4",
+ "title": "The 20-minute scoping call",
+ "tag": "Diagnosis of fit, live",
+ "status": "part",
+ "have": [
+ [
+ "ok",
+ "Seven discovery questions: what is not working · who is affected · since when · what evidence · what was tried · what would improvement look like in daily work · who must approve change"
+ ],
+ [
+ "ok",
+ "ClickUp call structure: existing comms model · active members · their issue (5 types) · their ask"
+ ],
+ [
+ "ok",
+ "Rehearsed answer to “how will you actually do this?” — look before you fix → small adoptable set → tested with real users → handed over. Ends on the VSS monthly-review evidence"
+ ],
+ [
+ "miss",
+ "Note-capture format (the engagement brief is built from this call)"
+ ],
+ [
+ "miss",
+ "Disqualification script — criteria say when to walk away, nothing says how"
+ ]
+ ],
+ "send": [
+ [
+ "info",
+ "Nothing in writing during the call. Never a number."
+ ],
+ [
+ "ok",
+ "Within 24h AFTER: the OD Process Note (EN / HI-EN) — ⚠️ fill the five xxx placeholders first: For, Date, timeline, reference engagement, contact"
+ ]
+ ],
+ "get": [
+ [
+ "info",
+ "Answers to all 7 questions, in their words — you will quote these back in the proposal"
+ ],
+ [
+ "info",
+ "Who must approve change"
+ ],
+ [
+ "info",
+ "Their issue vs their shopping list — the distance between them is the diagnosis"
+ ]
+ ],
+ "rules": [
+ {
+ "t": "Item 3 vs item 5 — keep them apart",
+ "d": "“What issue do they want to solve” and “what do they think they need” are different answers. An org that names ‘no role clarity’ and asks for ‘report writing’ has just told you something it did not mean to."
+ },
+ {
+ "t": "Add one question (Clarity, 14 Aug)",
+ "d": "“What have you already tried and stopped?” — the graveyard question. Three abandoned registers means the constraint is not format quality, and delivering a fourth is malpractice."
+ }
+ ],
+ "qa": [
+ {
+ "q": "All 7 questions + rapport + my own pitch in 20 minutes?",
+ "a": "It does not fit — that is the open gap. Priority order: their issue (Q1–Q4) → who approves → your one-paragraph how. Park the rest for the proposal call-back."
+ },
+ {
+ "q": "They ask the price on the call?",
+ "a": "“I price by scope, not by hour — you'll have a number in the proposal within 48 hours of this call, tied to exactly what we agree here.” Never improvise a figure live."
+ }
+ ],
+ "src": "Step 4 · the methodology–1.4 · ClickUp Pre-Planning List"
+ },
+ {
+ "n": "5",
+ "title": "The proposal",
+ "tag": "Where ₹45,000 appears — once",
+ "status": "miss",
+ "have": [
+ [
+ "miss",
+ "Proposal template — does not exist in any form. Largest single gap in the package"
+ ]
+ ],
+ "send": [
+ [
+ "miss",
+ "Their problem in THEIR words from the call · scope in/out · the phases with what they receive (Process Note) · what you need from them · timeline 2–3 weeks · THE NUMBER: ₹45,000 pilot shown against the ₹75,000–1,20,000 standard · the exchange: written case study + nameable reference, stated not implied · FCRA line if applicable"
+ ]
+ ],
+ "get": [
+ [
+ "info",
+ "A yes, a negotiation, or a documented no"
+ ]
+ ],
+ "rules": [
+ {
+ "t": "Say five is bounded, in writing",
+ "d": "“First five engagements” goes in the proposal so the client understands the rate expires by design — that is what keeps a pilot rate from becoming the standing rate."
+ },
+ {
+ "t": "FCRA — the only permitted sentence",
+ "d": "“Happy to align the contract structure with your FCRA auditor's guidance.” Nothing further, ever -- the auditor makes the legal call, never you."
+ }
+ ],
+ "qa": [
+ {
+ "q": "They ask for a discount on the pilot rate?",
+ "a": "Scope down, not price down (the pricing rules). Remove a module and keep the number honest — a discount at the door anchors permanently and NGO directors talk to each other."
+ }
+ ],
+ "src": "Step 5 · the pricing rules"
+ },
+ {
+ "n": "6",
+ "title": "They confirm — the contract / ToR",
+ "tag": "Nothing starts without it",
+ "status": "part",
+ "have": [
+ [
+ "ok",
+ "Payment structure exists (ClickUp): 50% advance · 50% on completion"
+ ],
+ [
+ "part",
+ "⚠️ Move tranche 2 off “report shared” onto handover-with-named-owner — else the contract pays for a document while says success is behaviour change (trigger text truncated; verify)"
+ ],
+ [
+ "miss",
+ "ToR template — promised as the Phase-1 deliverable in the Process Note, does not exist"
+ ],
+ [
+ "miss",
+ "Confidentiality clause · access clause · exit terms"
+ ]
+ ],
+ "send": [
+ [
+ "miss",
+ "ToR: parties · scope in/out · phases & dates · deliverables · what THEY provide · confidentiality both ways · fee & triggers · IP and case-study consent · access failure terms · exit"
+ ]
+ ],
+ "get": [
+ [
+ "info",
+ "Signature + 50% advance + a named focal point"
+ ],
+ [
+ "warn",
+ "Case-study consent IN the contract — the pilot rate is traded for a written case study and a nameable reference; if it is not written here, you discounted for nothing"
+ ]
+ ],
+ "rules": [],
+ "qa": [
+ {
+ "q": "They sign but the advance doesn't arrive?",
+ "a": "The engagement has not started. Kickoff is gated on signature AND advance — that is what the 50% is for."
+ }
+ ],
+ "src": "Step 6 · ClickUp item 4 · the pricing rules"
+ }
+ ]
+ },
+ {
+ "id": 3,
+ "title": "Delivery",
+ "range": "The 8-phase cycle · Kickoff → Handover",
+ "desc": "Diagnosis first, always. One phase is fully proven (Implementation — VSS). One carries the CLARITY gate.",
+ "intro": "the methodology: every engagement starts with diagnosis, not solution design. Phase 5 is the one complete stage — six adopted policies at VSS prove it. Phase 2 is the weakest and most exposed: a scored capacity baseline is promised in writing and cannot yet be produced.",
+ "steps": [
+ {
+ "n": "7",
+ "title": "Kickoff — intake & scoping",
+ "tag": "Phase 1",
+ "status": "part",
+ "have": [
+ [
+ "ok",
+ "Signed ToR + advance received + named focal point"
+ ],
+ [
+ "part",
+ "Engagement brief — the entry-criteria gate structures it from your notes; no template exists"
+ ]
+ ],
+ "send": [
+ [
+ "info",
+ "The brief, for their validation: issue · affected functions · objective · stakeholders · time frame · constraints · expected outcome"
+ ]
+ ],
+ "get": [
+ [
+ "warn",
+ "3–5 success indicators, set NOW, before anything changes (validation cycle Step 3). Skip this and Phase 6 has nothing to measure — this is where the evaluation problem is actually created"
+ ],
+ [
+ "info",
+ "BASELINE: three countable things, same conversation, no instrument needed — how long X takes now · how many people touch it · where it stalls. VSS never got one; a case study with no baseline is an assertion (Clarity, highest-value change)"
+ ]
+ ],
+ "rules": [],
+ "qa": [
+ {
+ "q": "What does a 3-countable baseline look like for a documentation problem?",
+ "a": "e.g. days from field visit to report reaching the office · number of hands it passes through · how many of last quarter's reports the funder returned with queries. Two hours of asking, written down before you touch anything."
+ }
+ ],
+ "src": "Step 7 · validation cycle Steps 3–4 · the adoption-judgment brief"
+ },
+ {
+ "n": "8",
+ "title": "Diagnosis",
+ "tag": "Phase 2 — weakest, most exposed",
+ "status": "miss",
+ "have": [
+ [
+ "ok",
+ "Eight evidence sources · phase-2 method list · the hypothesis rule: thin evidence = hypothesis, never conclusion"
+ ],
+ [
+ "part",
+ "the NGO readiness self-check — frames what to look at; NOT a baseline (self-scored, 10 min, pre-client)"
+ ],
+ [
+ "miss",
+ "Interview guide (prospect questions exist, diagnosis questions do not)"
+ ],
+ [
+ "miss",
+ "Document-request checklist"
+ ],
+ [
+ "miss",
+ "Capacity assessment instrument + scoring — adapt Marguerite Casey OCAT (free, spreadsheet, 4 domains) → Google Forms. The standing rule: never build a rival diagnostic to SELL; building one to deliver with is a different act"
+ ],
+ [
+ "miss",
+ "Observation protocol · interviewee confidentiality note (staff are about to tell you what is wrong with their own management)"
+ ],
+ [
+ "part",
+ "Ten questions audited in from the Ingentis org-design checklist (14 Aug 2026), NGO-filtered — see the full ten below and the rules box for what was deliberately left out"
+ ]
+ ],
+ "send": [
+ [
+ "info",
+ "Nothing yet — you are gathering"
+ ]
+ ],
+ "get": [
+ [
+ "info",
+ "Evidence from ≥3 sources · the existing registers (attendance notebook, WhatsApp group — the formats that already work) · the graveyard (tools started and stopped) · who is paid to do what, from which budget head"
+ ]
+ ],
+ "rules": [
+ {
+ "t": "Scale reference",
+ "d": "VSS's own OD baseline: 12 areas · 37 sub-areas · 225 questions · 66.70%. That instrument already exists inside your one client's world."
+ },
+ {
+ "t": "The language check (Clarity)",
+ "d": "What language will each document live in, and what language does its user work in? A finance policy in English for a Hindi-working accounts assistant is decoration with a signature."
+ },
+ {
+ "t": "Ten diagnostic questions added from an external checklist (Ingentis org.manager, audited 2026-08-14)",
+ "d": "Meetings are goal-oriented and efficiently run · the org was designed deliberately or grew as patchwork · roles are measured by output/results, not just task/input · decision structure is efficient and involves the right people · there is a real internal leadership pipeline, not just a founder · managers have TIME and resources to mentor, not just the skill to · information silos or ‘expertise empires’ exist and are named · task-loads are realistic, not chronically overloaded · staff have real voice and influence, not just a title · knowledge is retained across staff turnover, not lost with each departure. Each closes a real gap this stage didn't cover — see engagement-runbook / package-review cross-check, audited 2026-08-14. Deliberately NOT imported: compensation streamlining and back-office sizing (both assume a corporate pay/HR scale most 5–30-staff Indian NGOs don't have — the real problem here is usually under-staffing, already covered by the budget-line test above) and any 'customer' framing (translate to donor/beneficiary/community, never paste the word itself into a client-facing document)."
+ }
+ ],
+ "qa": [
+ {
+ "q": "Leadership offers to answer for everyone — skip staff interviews?",
+ "a": "No. Staff access is an entry criterion. If access fails now, the diagnosis is undeliverable — surface it as a contract issue, not a scheduling one."
+ }
+ ],
+ "src": "Step 8 · the adoption-judgment brief Part 1"
+ },
+ {
+ "n": "9",
+ "title": "Feedback session",
+ "tag": "Phase 3 — trust is earned or lost here",
+ "status": "part",
+ "have": [
+ [
+ "ok",
+ " five tests per recommendation: evidenced · feasible · mission-aligned · prioritised by impact/effort · plain language"
+ ],
+ [
+ "ok",
+ "Blame-direction rule (writing-craft): every short declarative points AT the reader or at their expense — a diagnostic is read by the people whose work it describes"
+ ],
+ [
+ "ok",
+ "Plain-language test: would someone outside the sector understand every sentence on first read?"
+ ],
+ [
+ "miss",
+ "Diagnostic report template · facilitation plan · a method for “priorities agreed together” · what to do when leadership disagrees with a finding"
+ ]
+ ],
+ "send": [
+ [
+ "part",
+ "The diagnostic report — evidence, assumptions and priority issues, each labelled; hypotheses marked as hypotheses"
+ ]
+ ],
+ "get": [
+ [
+ "info",
+ "Agreed priorities, in writing, signed by whoever must approve change"
+ ]
+ ],
+ "rules": [],
+ "qa": [
+ {
+ "q": "The director rejects a finding flat out?",
+ "a": "Ask what evidence would change their mind, then go get it or drop it. A finding held against the client's will dies at implementation anyway — 's adoption test starts in this room."
+ }
+ ],
+ "src": "Step 9 · the writing rules, "
+ },
+ {
+ "n": "10",
+ "title": "Action planning — CLARITY GATE",
+ "tag": "Phase 4 · design only what they can adopt",
+ "status": "gate",
+ "gate": true,
+ "have": [
+ [
+ "ok",
+ "⚑ CLARITY runs BEFORE anything is designed. Feed it three things or it routes on a guess: the root-cause statement · the client's words for what they want built · what they tried and abandoned"
+ ],
+ [
+ "ok",
+ "CDC SMART checklist (in the folder): one action verb, nothing unmeasurable"
+ ],
+ [
+ "ok",
+ "Nine-intervention menu (Phase 4) · root-cause reframing (Phase 3)"
+ ],
+ [
+ "ok",
+ "The five issue types (ClickUp) map onto the menu: mis-communication → comms routines · role clarity → role clarification · workflow → redesign"
+ ],
+ [
+ "miss",
+ "Action plan + roadmap template · impact-vs-effort grid"
+ ]
+ ],
+ "send": [
+ [
+ "part",
+ "Action design note: each intervention with what it REPLACES, who does it instead of what, on which day, and its forcing function"
+ ]
+ ],
+ "get": [
+ [
+ "info",
+ "Client sign-off on a plan small enough to actually happen"
+ ]
+ ],
+ "rules": [
+ {
+ "t": "The adoption test, per item (Clarity verdict)",
+ "d": "Adoption capacity is not a score — it is a per-item prediction: what does this replace · who does it instead of what · on which day · what happens OUTSIDE the org if it is not done. No answer to “instead of what” = a practice added to somebody's evening."
+ },
+ {
+ "t": "Which meeting does this live in?",
+ "d": "A design constraint, not a closing question. Any new practice lands on an existing recurring slot or it has no heartbeat — the one mechanism with real VSS evidence, and it writes most of the handover pack for free."
+ },
+ {
+ "t": "Forcing function first",
+ "d": "Sort every requested item by “who asked for this?” — auditor / FCRA / funder-format items get adopted; internal-virtue items get adopted last or never. Strongest predictor available, costs one question."
+ }
+ ],
+ "qa": [
+ {
+ "q": "When may the CLARITY gate be skipped?",
+ "a": "Only when the practice has already delivered and evidenced the SAME intervention in a comparable organisation — and then name exactly which conditions the new case satisfies. Resemblance is not precedent."
+ },
+ {
+ "q": "The client insists on all four shopping-list items?",
+ "a": "Sort by forcing function in front of them: who asked for each, and what breaks externally if it isn't done. The list usually sorts itself; you never have to be the one saying no."
+ }
+ ],
+ "src": "methodology Phase 4 (Clarity standing step) · the adoption-judgment brief Parts 1–3"
+ },
+ {
+ "n": "11",
+ "title": "Implementation",
+ "tag": "Phase 5 — the proven stage",
+ "status": "ok",
+ "have": [
+ [
+ "ok",
+ "PROVEN AT VSS: six policies adopted org-wide (digital · finance · fundraising · gender · HR · vehicle) + operational formats + project timelines + proposal flow + first standardised comms infrastructure incl. website"
+ ],
+ [
+ "ok",
+ "The adoption test: can a real user understand it, use it, explain it, apply it — all four, in front of you"
+ ],
+ [
+ "part",
+ "Are the six VSS policies filed as reusable templates? Possibly the most valuable unfiled asset in the practice — CHECK before building anything new"
+ ],
+ [
+ "miss",
+ "Training design pack · job aids"
+ ]
+ ],
+ "send": [
+ [
+ "ok",
+ "The smallest usable version, built WITH them — plain language, tested against field staff as the readers who matter"
+ ]
+ ],
+ "get": [
+ [
+ "info",
+ "A real user passing the four-part adoption test · named owner per system"
+ ]
+ ],
+ "rules": [],
+ "qa": [
+ {
+ "q": "They ask for two more policies mid-build?",
+ "a": "Boundary rule : if the core problem is unclear, pause and diagnose. Scope-adds go into a note for engagement two — that is also how a pilot client becomes a full-rate client."
+ }
+ ],
+ "src": "Step 11 · Case-Note-VSS-Balotra-2026"
+ },
+ {
+ "n": "12",
+ "title": "Evaluation",
+ "tag": "Phase 6 — blocked by Step 8's instrument",
+ "status": "miss",
+ "have": [
+ [
+ "ok",
+ "Validation cycle Steps 5–6 · : success = behaviour change, not deliverable count"
+ ],
+ [
+ "miss",
+ "Endline = the Step-8 instrument re-run; no instrument, no endline"
+ ],
+ [
+ "miss",
+ "Default indicator set · adoption-measurement method for: used? by whom? how often? what friction?"
+ ]
+ ],
+ "send": [
+ [
+ "part",
+ "Evaluation note: each indicator against its Step-7 baseline"
+ ]
+ ],
+ "get": [
+ [
+ "info",
+ "The case-study evidence the pilot rate paid for — numbers a funder can read"
+ ]
+ ],
+ "rules": [
+ {
+ "t": "The luck that must become method",
+ "d": "VSS making documentation a standing monthly agenda item was found by reading their LinkedIn four months later. A +90-day calendar entry per engagement turns the strongest evidence the practice owns from accident into procedure."
+ }
+ ],
+ "qa": [
+ {
+ "q": "Nothing measurably changed by evaluation time?",
+ "a": "Report it. Step 8 of the validation cycle: record what failed and which assumptions were wrong — do not scale what is not adopted. An honest null in the lesson log beats an inflated case study everywhere it matters."
+ }
+ ],
+ "src": "Step 12 · validation cycle"
+ },
+ {
+ "n": "13",
+ "title": "Exit & handover",
+ "tag": "Phase 7–8 · they stop needing you, on purpose",
+ "status": "part",
+ "have": [
+ [
+ "ok",
+ "Transfer list (Phase 8): documented ownership · governance routines · training notes · editable templates · version control · review calendar"
+ ],
+ [
+ "ok",
+ "Versioning rule : every tool carries number, purpose, owner, review date"
+ ],
+ [
+ "miss",
+ "Handover pack template · ownership matrix · review-calendar template"
+ ]
+ ],
+ "send": [
+ [
+ "part",
+ "The handover pack — largely written already if “which meeting does this live in” was answered at Step 10"
+ ]
+ ],
+ "get": [
+ [
+ "warn",
+ "ASK NOW, while goodwill is current: the written case study · the nameable reference (draft it for them) · written permission for what may be said, figures vs facts · one photo/artefact. This is what ₹45,000 of discount purchased — and tranche 2 should release here"
+ ]
+ ],
+ "rules": [],
+ "qa": [
+ {
+ "q": "When exactly do I ask for the case study?",
+ "a": "At handover, same meeting, not months later. Draft the reference yourself and offer it for editing — a busy director approves a good draft and never writes one from scratch."
+ }
+ ],
+ "src": "Step 13"
+ }
+ ]
+ },
+ {
+ "id": 4,
+ "title": "After & Learn",
+ "range": "Layer 3 · the practice compounds",
+ "desc": "The lesson log, the +90-day check, the pilot counter. What turns five engagements into a practice instead of five separate jobs.",
+ "intro": "the methodology is blunt: knowledge that is hard to find does not count as knowledge management. One engagement has produced one case note; at five pilots the cost of not running this layer is rebuilding the same things five times.",
+ "steps": [
+ {
+ "n": "14",
+ "title": "Close the loop",
+ "tag": "Within a week of handover",
+ "status": "miss",
+ "have": [
+ [
+ "miss",
+ "Lesson log: context · issue · intervention · evidence used · adoption barriers · results · ASSUMPTIONS THAT PROVED WRONG · next time"
+ ],
+ [
+ "miss",
+ "Template library — file every reusable artefact with versioning, starting with the VSS six"
+ ],
+ [
+ "part",
+ "Diagnostic pattern file — the ClickUp issue taxonomy is its beginning; add one row per engagement"
+ ]
+ ],
+ "send": [
+ [
+ "info",
+ "Nothing outward — this step is for the practice"
+ ]
+ ],
+ "get": [
+ [
+ "info",
+ "Reusable assets so engagement N+1 starts at 60%, not zero"
+ ]
+ ],
+ "rules": [
+ {
+ "t": "The pilot counter",
+ "d": "A pilot slot used is a pilot slot gone. Track n/5 — the moment engagement five closes, the rate is ₹75,000+ unless a fresh decision says otherwise."
+ }
+ ],
+ "qa": [
+ {
+ "q": "What goes in “assumptions that proved wrong”?",
+ "a": "The private version: what you believed about what they needed, what they would adopt, and how long it would take — against what happened. Clarity's note: by engagement four this file is worth more than the case studies."
+ }
+ ],
+ "src": "Step 14 · methodology Layer 3"
+ },
+ {
+ "n": "+90",
+ "title": "The 90-day check",
+ "tag": "One calendar entry per engagement",
+ "status": "miss",
+ "have": [
+ [
+ "miss",
+ "A scheduled +30 and +90-day check-in per closed engagement — currently nothing fires"
+ ]
+ ],
+ "send": [
+ [
+ "info",
+ "One short message to the named owner: “is it still being used?”"
+ ]
+ ],
+ "get": [
+ [
+ "info",
+ "Adoption evidence as method, not luck — and often the second engagement: the check-in that finds a new problem is the warmest sourcing channel the practice has"
+ ]
+ ],
+ "rules": [],
+ "qa": [
+ {
+ "q": "What if the answer is “we stopped using it”?",
+ "a": "Gold, twice over. It goes in the withdrawn-style lesson log (recorded failures do not repeat), and “what made it stop?” is a diagnostic conversation — which is Phase 1 of the next engagement."
+ }
+ ],
+ "src": "Step 12 rule · the adoption-judgment brief"
+ }
+ ]
+ }
+ ]
 }
