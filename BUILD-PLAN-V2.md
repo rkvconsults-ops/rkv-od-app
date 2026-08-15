@@ -54,6 +54,13 @@ doc checklist, confidentiality note, diagnostic report, feedback
 facilitation plan, action plan, handover pack, case-study request,
 lesson log + the M6 four). ALL ARE DRAFTS AWAITING RAHUL REVIEW -- each
 carries the red banner until he approves it and a session marks it final.
-NEXT: M8 issue-based playbooks -> M7 all remaining docs ->
+M8 DONE 15 Aug: five issue-based playbooks live (playbooks.json) -- each
+issue type carries diagnose-first steps, root causes, matched
+interventions, baseline indicators, key documents, and a watch-for
+warning. Client detail shows the playbook matched to their intake issue;
+clients without an issue get an in-place selector. Jargon purge COMPLETE
+(verified zero internal references live). REMAINING for v2: language
+add-on architecture (per-client Hindi/Bengali/Gujarati document versions)
++ Rahul reviewing the 16 draft documents to mark them final. -> M7 all remaining docs ->
 M8 issue playbooks wiring -> M9 integrations (per Rahul's pick) ->
 M10 language add-on architecture + full jargon purge + review pass.
