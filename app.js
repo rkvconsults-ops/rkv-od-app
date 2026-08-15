@@ -212,6 +212,8 @@ const App = (() => {
 
       ${smartLinksHTML(c)}
 
+      ${playbookHTML(c)}
+
       ${intakeHTML(c)}
 
       ${documentsHTML(step, c)}
@@ -469,6 +471,51 @@ const App = (() => {
       <span><i class="ck" style="background:var(--block)"></i>Red = blocked, needs something</span>
       <span><i class="ck" style="background:var(--line)"></i>Grey = not started yet</span>
     </div>`;
+  }
+
+  // The tailored path: the issue named at intake selects this client's
+  // playbook -- what to diagnose first, likely root causes, matched
+  // interventions, the documents that matter most, and what to measure.
+  function playbookHTML(c) {
+    const issues = (window.PB && window.PB.issues) || {};
+    const issue = c.intake && c.intake.issue;
+    if (!issue || !issues[issue]) {
+      const opts = Object.keys(issues).map((k) => `<option ${k === issue ? "selected" : ""}>${esc(k)}</option>`).join("");
+      return `<div class="section-label">Tailored path</div><div class="card">
+        <p class="sm mut">No issue recorded for this client yet. Choose the issue they named, and their tailored playbook appears here:</p>
+        <select onchange="App.setIssue('${c.id}', this.value)"><option value="">&mdash; choose the issue &mdash;</option>${opts}</select>
+      </div>`;
+    }
+    const pb = issues[issue];
+    return `<div class="section-label">Tailored path &mdash; ${esc(issue)}</div>
+      <div class="card">
+        <p class="sm"><b>${esc(pb.summary)}</b></p>
+        <div class="section-label" style="margin-top:10px">Diagnose first</div>
+        <ul class="plain">${pb.diagnoseFirst.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
+        <div class="section-label">Likely root causes</div>
+        <ul class="plain">${pb.rootCauses.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
+        <div class="section-label">Matched interventions</div>
+        ${pb.interventions.map((iv) => `<div style="margin-bottom:7px"><b class="sm">${esc(iv.n)}</b><div class="sm mut">${esc(iv.d)}</div></div>`).join("")}
+        <div class="section-label">Baseline these numbers</div>
+        <ul class="plain">${pb.indicators.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
+        <div class="section-label">Documents that matter most here</div>
+        <div class="row" style="flex-wrap:wrap">${pb.keyDocs.map((id) => {
+          const t = window.TPL && window.TPL.templates && window.TPL.templates[id];
+          return t ? `<a class="btn small" href="#/doc/${id}?client=${c.id}">${esc(t.title.split(" — ")[0].split(" (")[0])}</a>` : "";
+        }).join("")}</div>
+        <div class="rulebox" style="margin-top:10px"><b>Watch for:</b> ${esc(pb.watchFor)}</div>
+      </div>`;
+  }
+
+  function setIssue(clientId, issue) {
+    const c = Store.get(clientId);
+    if (!c) return;
+    c.intake = c.intake || {};
+    c.intake.issue = issue;
+    c.log = c.log || [];
+    c.log.push({ date: Engine.todayISO(), event: `Issue set: ${issue} -- tailored playbook activated` });
+    Store.save(c);
+    render();
   }
 
   function readIntake() {
@@ -914,7 +961,7 @@ const App = (() => {
   return {
     boot, nav, render, toast,
     saveIntake, shareIntakeLink, makeIntakeCode, doImportCode, exportBackup, importBackup,
-    saveDraft, downloadDoc,
+    saveDraft, downloadDoc, setIssue,
     toggleTask, toggleGate, doAdvance, addWait, removeWait, confirmDelete,
     testConnection, saveSync, disconnectSync, syncNow,
   };
